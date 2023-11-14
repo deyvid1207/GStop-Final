@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:dev": "vite",  
+    "start:api": "cd D:\\ReactJS\\GStop\\GStop_API\\GStop_API && dotnet run",
+    "start": "concurrently \"npm run start:dev\" \"npm run start:api\""
+    
   },
   "dependencies": {
     "react": "^18.2.0",

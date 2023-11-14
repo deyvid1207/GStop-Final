@@ -1,0 +1,28 @@
+{
+  "name": "gstop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deyvid1207/GStop-Final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deyvid1207/GStop-Final/issues"
+  },
+  "homepage": "https://github.com/deyvid1207/GStop-Final#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1",
+    "vite": "^4.5.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.18.0"
+  }
+}

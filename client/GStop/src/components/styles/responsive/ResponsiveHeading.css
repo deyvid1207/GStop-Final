@@ -1,0 +1,13 @@
+@media (width <= 600px) {
+     .Title{
+        display: none;
+     }
+     
+    ul {
+        gap: 3em;
+        justify-content: center;
+    }
+    .right {
+        margin-left: 0
+    };
+}

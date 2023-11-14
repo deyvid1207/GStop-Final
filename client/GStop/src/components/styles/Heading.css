@@ -1,0 +1,50 @@
+li {
+    display: block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    color:azure;
+    margin-top:1em
+    
+}
+a {
+    text-decoration: none;
+    color:azure;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+ 
+    gap: 5em;
+  
+    
+}
+.header {
+    padding: 1em;
+    background-color : #313866
+
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.last {
+    margin-right: 2em;
+}
+.right {
+ margin-left: auto;
+}
+.Title {
+    color:azure;
+    position: relative;
+    margin: auto;
+    margin-right: 1.5em;
+    font-size: 2rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+ 

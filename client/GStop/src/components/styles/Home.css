@@ -1,0 +1,68 @@
+.home-container-2 {
+    display: flex;
+    align-items: center;
+ background-color: #504099;
+    flex-direction: column;
+    padding: 2em;
+}
+.home-title {
+    color:cornsilk;
+    
+    text-transform: uppercase;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.home-text-2 {
+    color: cornsilk;
+    padding: 1em;
+     text-indent: 1em;
+     margin-left: 5em;
+    white-space: nowrap;
+}
+.home-sale {
+    background-color: #974EC3;
+    padding: 1em;
+}
+.home-sale-1 {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     
+}
+.home-sale-titles {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7em;
+    justify-content: center;
+    
+    
+}
+.home-text-sale-1, .home-text-sale-2, .home-text-sale-3 { 
+    color:black;
+    white-space: nowrap;
+    background-color: burlywood;
+    text-align: center;
+    padding: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    border-radius: 2em;
+    
+    
+}
+.home-sale-title {
+    color:wheat;
+    background-color: brown;
+    padding: 1em;
+    border-radius: 2em;
+    font-size: 3em;
+}
+.home-sale-subtitle {
+    
+    color:white;
+    background-color: coral;
+    text-transform: uppercase;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    padding: 1em;
+    border-radius: 2em;
+}
+ 

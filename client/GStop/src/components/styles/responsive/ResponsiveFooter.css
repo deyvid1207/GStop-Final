@@ -1,0 +1,5 @@
+@media (width <= 600px) {
+    .footer-title {
+        margin-left: 15em;
+    }
+}

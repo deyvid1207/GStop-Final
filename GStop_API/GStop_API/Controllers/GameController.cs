@@ -43,11 +43,11 @@ namespace GStop_API.Controllers
 
         [HttpGet("GetAllGames")]
 
-        public async Task<List<Game>> GetAllGames()
+        public async Task<IActionResult> GetAllGames()
         {
 
             List<Game> games = await _gameServices.GetAllGames();
-            return games;
+            return Ok(games);
            
 
         }
