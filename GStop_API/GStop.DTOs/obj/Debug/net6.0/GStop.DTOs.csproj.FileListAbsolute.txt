@@ -1,0 +1,17 @@
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.csproj.AssemblyReference.cache
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.GeneratedMSBuildEditorConfig.editorconfig
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.AssemblyInfoInputs.cache
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.AssemblyInfo.cs
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.csproj.CoreCompileInputs.cache
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.DTOs.deps.json
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.DTOs.dll
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.DTOs.pdb
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.Common.dll
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.Data.Models.dll
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.Data.Models.pdb
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\bin\Debug\net6.0\GStop.Common.pdb
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.csproj.CopyComplete
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.dll
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\refint\GStop.DTOs.dll
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\GStop.DTOs.pdb
+D:\ReactJS\GStop\GStop_API\GStop.DTOs\obj\Debug\net6.0\ref\GStop.DTOs.dll

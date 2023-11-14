@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GStop_API", "GStop_API\GStop_API.csproj", "{16A873AD-5CAC-47C0-A3BD-4FABAF37CC8C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GStop.Data", "GStop.Data\GStop.Data.csproj", "{1A90330C-E177-4630-85EF-02199A9F8E85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GStop.Data.Models", "GStop.Data.Models\GStop.Data.Models.csproj", "{C85F2889-3C98-421A-AF47-52234A4C97C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GStop.Core", "GStop.Core\GStop.Core.csproj", "{9164E4D8-F105-4182-BEBD-E94072CBBAA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GStop.Common", "GStop.Common\GStop.Common.csproj", "{D318DBFD-D29C-4E57-8F6D-B2DC9791FA91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GStop.DTOs", "GStop.DTOs\GStop.DTOs.csproj", "{E575BACE-8D8B-4514-9A7E-4A01F241492C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16A873AD-5CAC-47C0-A3BD-4FABAF37CC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16A873AD-5CAC-47C0-A3BD-4FABAF37CC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16A873AD-5CAC-47C0-A3BD-4FABAF37CC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16A873AD-5CAC-47C0-A3BD-4FABAF37CC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A90330C-E177-4630-85EF-02199A9F8E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A90330C-E177-4630-85EF-02199A9F8E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A90330C-E177-4630-85EF-02199A9F8E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A90330C-E177-4630-85EF-02199A9F8E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85F2889-3C98-421A-AF47-52234A4C97C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85F2889-3C98-421A-AF47-52234A4C97C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85F2889-3C98-421A-AF47-52234A4C97C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85F2889-3C98-421A-AF47-52234A4C97C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9164E4D8-F105-4182-BEBD-E94072CBBAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9164E4D8-F105-4182-BEBD-E94072CBBAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9164E4D8-F105-4182-BEBD-E94072CBBAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9164E4D8-F105-4182-BEBD-E94072CBBAA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D318DBFD-D29C-4E57-8F6D-B2DC9791FA91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D318DBFD-D29C-4E57-8F6D-B2DC9791FA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D318DBFD-D29C-4E57-8F6D-B2DC9791FA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D318DBFD-D29C-4E57-8F6D-B2DC9791FA91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E575BACE-8D8B-4514-9A7E-4A01F241492C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E575BACE-8D8B-4514-9A7E-4A01F241492C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E575BACE-8D8B-4514-9A7E-4A01F241492C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E575BACE-8D8B-4514-9A7E-4A01F241492C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {548219E8-949D-45C6-BF1F-2AF6909BE4B2}
+	EndGlobalSection
+EndGlobal

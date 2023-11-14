@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GStop.Data.Models\GStop.Data.Models.csproj" />
+    <ProjectReference Include="..\GStop.Data\GStop.Data.csproj" />
+    <ProjectReference Include="..\GStop.DTOs\GStop.DTOs.csproj" />
+  </ItemGroup>
+
+</Project>
