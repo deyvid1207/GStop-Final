@@ -1,7 +1,7 @@
 import './styles/Home.css'
 import './styles/responsive/ResponsiveHome.css'
 function Home() {
-     
+  
   
     return (
         <div> 

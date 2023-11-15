@@ -47,24 +47,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IGameServices, GameServices>();
+ 
 
-builder.Services.AddCors(c =>
+builder.Services.AddCors(options =>
 {
-    c.AddPolicy("AllowOrigin", 
-    options => options.
-    AllowAnyOrigin().
-    AllowAnyMethod().
-    AllowAnyHeader().
-    AllowCredentials()
-    );
-}
-);
+    options.AddPolicy("CorsPolicy",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+ 
+    );});
+
 var app = builder.Build();
 app.UseCors(options => options.
     AllowAnyOrigin().
     AllowAnyMethod().
-    AllowAnyHeader().
-    AllowCredentials()
+    AllowAnyHeader()
+ 
     );
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

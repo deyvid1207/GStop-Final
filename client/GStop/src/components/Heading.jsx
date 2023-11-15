@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './styles/Heading.css'; 
 import './styles/responsive/ResponsiveHeading.css'; 
-import { Link } from "react-router-dom";
+import { Outlet , NavLink } from "react-router-dom";
 
 function Heading() {
   const [games, setGames] = useState([]);
@@ -29,14 +29,15 @@ function Heading() {
        <header>
         <div className="header"> 
         <ul>
-           <li><Link to="/">Home</Link></li>
-           <li><Link to="/games">All Games</Link></li>
-           <h3 className="Title"><Link to="/">GStop</Link></h3>
-           <li className="right"><Link to="/register">Register</Link></li>
-           <li className="last"><Link to="/login">Login</Link></li>
+           <li><NavLink  to="/">Home</NavLink ></li>
+           <li><NavLink to="/games">All Games</NavLink></li>
+           <h3 className="Title"><NavLink to="/">GStop</NavLink></h3>
+           <li className="right"><NavLink to="/register">Register</NavLink></li>
+           <li className="last"><NavLink to="/login">Login</NavLink></li>
         </ul>
         </div>
        </header>
+       <Outlet />
     </div>
   );
 }
