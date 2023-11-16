@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNet.WebApi.Cors
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Serialization;
 
@@ -51,8 +52,7 @@ builder.Services.AddScoped<IGameServices, GameServices>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy",
-        builder => builder
+    options.AddPolicy("CorsPolicy",builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -60,12 +60,7 @@ builder.Services.AddCors(options =>
     );});
 
 var app = builder.Build();
-app.UseCors(options => options.
-    AllowAnyOrigin().
-    AllowAnyMethod().
-    AllowAnyHeader()
- 
-    );
+app.UseCors("CorsPolicy");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -4,25 +4,7 @@ import './styles/responsive/ResponsiveHeading.css';
 import { Outlet , NavLink } from "react-router-dom";
 
 function Heading() {
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await fetch(`https://127.0.0.1:7293/api/game/GetAllGames`);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data)
-        setGames(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchGames();
-  }, []);
+ 
 
   return (
     <div>

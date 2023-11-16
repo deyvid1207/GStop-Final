@@ -8,9 +8,11 @@ using GStop_API.Services;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using GStop_API.DTOs.UserDTOs;
 using GStop.Core.Services.Contacts;
+using Microsoft.AspNetCore.Cors;
 
 namespace GStop_API.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/accounts")]
     [ApiController]
     public class UserController : Controller
@@ -28,7 +30,7 @@ namespace GStop_API.Controllers
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDTO userForRegistration)
         {
             if (userForRegistration == null || !ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState);
             var user = new ApplicationUser
             {
                 Id = Guid.NewGuid(),
