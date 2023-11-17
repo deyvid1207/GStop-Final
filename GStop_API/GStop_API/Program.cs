@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNet.WebApi.Cors
+ 
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Serialization;
 
@@ -36,6 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
    .AddCookie(options =>
    {
+       options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
        options.Cookie.Name = "LoginCookie";
        options.LoginPath = "/Account/Login";
        // Configure other options as needed

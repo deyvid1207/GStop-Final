@@ -4,6 +4,7 @@ using GStop_API.Data;
 using GStop_API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using GStop.Core.Services.Contacts;
+using System.Net.Http;
 
 namespace GStop_API.Services
 {
@@ -11,10 +12,12 @@ namespace GStop_API.Services
     {
         private readonly GStopDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
+        public ApplicationUser _currentUser { get; private set; }
         public UserServices(GStopDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this._dbContext = dbContext;
             this._userManager = userManager;
+
         }
         public async Task<ApplicationUser> GetUserByUsername(string username)
         {
@@ -22,6 +25,13 @@ namespace GStop_API.Services
 
             return user;
         }
+        public async Task<ApplicationUser> SetCurrentUser(string username)
+        {
+            _currentUser = await GetUserByUsername(username);
+
+            return _currentUser;
+        }
+
         public async Task<ApplicationUser> GetUserByEmail(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -33,5 +43,7 @@ namespace GStop_API.Services
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == Id);
             return user;
         }
+
+         
     }
 }

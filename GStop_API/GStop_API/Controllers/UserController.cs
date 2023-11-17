@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using GStop_API.DTOs.UserDTOs;
 using GStop.Core.Services.Contacts;
 using Microsoft.AspNetCore.Cors;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace GStop_API.Controllers
 {
@@ -18,13 +22,20 @@ namespace GStop_API.Controllers
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserServices _userServices;
         private readonly ILogger<LoginModel> _logger;
-        public UserController(UserManager<ApplicationUser> userManager, IUserServices userServices, ILogger<LoginModel> logger)
+        private readonly IConfiguration _configuration;
+        public UserController(UserManager<ApplicationUser> userManager,
+            IUserServices userServices, ILogger<LoginModel> logger, 
+            SignInManager<ApplicationUser> signInManager,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _userServices = userServices;
-            _logger=logger;
+            _logger = logger;
+            _signInManager = signInManager;
+            _configuration = configuration;
         }
         [HttpPost("Registration")]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDTO userForRegistration)
@@ -50,50 +61,33 @@ namespace GStop_API.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> LogUser([FromBody] UserLoginDTO userForRegistration)
         {
-            if (userForRegistration == null || !ModelState.IsValid)
-                return BadRequest();
-            var user = await _userServices.GetUserByEmail(userForRegistration.Email);
-            if (user == null)
+            var user = await _userManager.FindByEmailAsync(userForRegistration.Email);
+            if (user != null && await _userManager.CheckPasswordAsync(user, userForRegistration.Password))
             {
-                return NotFound("User not found");
-            }
-            var passwordIsValid = await _userManager.CheckPasswordAsync(user, userForRegistration.Password);
+                var userRoles = await _userManager.GetRolesAsync(user);
 
-            if (passwordIsValid)
-            {
-                var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, user.UserName),
-            // Add other claims as needed
-        };
-
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                var authProperties = new AuthenticationProperties
+                var authClaims = new List<Claim>
                 {
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddHours(8),
-
-                    // Allow session cookies to be persistent (stored between browser sessions)
-                    IsPersistent = true,
-
-                    // Set the cookie path (optional, defaults to '/')
-                    RedirectUri = "/",
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    authProperties);
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
 
-                // Redirect to a protected resource or return a success response
-                return Ok(new { Message = "Login successful" });
-            }
-            else
-            {
-                return Unauthorized(new { message = "Invalid login credentials" });
-            }
+                var token = GetToken(authClaims);
 
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo
+                });
+            }
+            return Unauthorized();
         }
+
         [HttpPost("Logout")]
         public async Task<IActionResult> LogOutUser()
         {
@@ -105,5 +99,30 @@ namespace GStop_API.Controllers
             var errors = result.Errors.Select(e => e.Description);
             return BadRequest(new { Errors = errors });
         }
+        [HttpGet("GetUser")]   
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserName = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ApplicationUser user = await _userManager.FindByNameAsync(currentUserName);
+            return Ok(user);
+        }
+        private JwtSecurityToken GetToken(List<Claim> authClaims)
+        {
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+
+            return token;
+        }
+        //FINISH WORK
+        //https://www.c-sharpcorner.com/article/jwt-authentication-and-authorization-in-net-6-0-with-identity-framework/
+
     }
 }

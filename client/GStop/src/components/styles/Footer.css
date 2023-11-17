@@ -19,7 +19,9 @@ ul{
 }
 .footer{
   background-color: #24262b;
-   
+}
+footer {
+  margin-top: auto;
 }
 .footer-col{
    width: 25%;

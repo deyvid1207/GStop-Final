@@ -3,19 +3,20 @@
     align-items: center;
  background-color: #504099;
     flex-direction: column;
-    padding: 2em;
+    padding: 6em;
 }
 .home-title {
     color:cornsilk;
-    
+    font-size: 3em;
     text-transform: uppercase;
        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .home-text-2 {
     color: cornsilk;
     padding: 1em;
+    font-size: 1.5em;
      text-indent: 1em;
-     margin-left: 5em;
+     margin-left: 3.5em;
     white-space: nowrap;
 }
 .home-sale {

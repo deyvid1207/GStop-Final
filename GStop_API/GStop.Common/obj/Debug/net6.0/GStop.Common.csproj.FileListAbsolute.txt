@@ -10,3 +10,15 @@ D:\ReactJS\GStop\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.dll
 D:\ReactJS\GStop\GStop_API\GStop.Common\obj\Debug\net6.0\refint\GStop.Common.dll
 D:\ReactJS\GStop\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.pdb
 D:\ReactJS\GStop\GStop_API\GStop.Common\obj\Debug\net6.0\ref\GStop.Common.dll
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\bin\Debug\net6.0\GStop.Common.deps.json
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\bin\Debug\net6.0\GStop.Common.dll
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\bin\Debug\net6.0\GStop.Common.pdb
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.csproj.AssemblyReference.cache
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.AssemblyInfoInputs.cache
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.AssemblyInfo.cs
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.csproj.CoreCompileInputs.cache
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.dll
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\refint\GStop.Common.dll
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\GStop.Common.pdb
+D:\Projects\GSTOP\GStop-Final\GStop_API\GStop.Common\obj\Debug\net6.0\ref\GStop.Common.dll

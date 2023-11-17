@@ -1,0 +1,74 @@
+.register-slogan {
+    background-color: #974EC3;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #504099;
+   
+}
+.register-form {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.form-div {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    padding: 9em 0 3em 1em;
+    gap: 2em;
+}
+.register-title {
+    color:cornsilk;
+    font-size: 3em;
+    text-transform: uppercase;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.register-subtitle {
+    color:cornsilk;
+    font-size: 1.9em;
+    text-transform: capitalize;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.label {
+    color:white;
+    font-size: 2em;
+}
+.input {
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+}
+.createButton {
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+    background-color: #D7BBF5;
+    color: #322653;
+    font-size: 1.2em;
+    font-weight: bolder;
+    
+}
+.createButton:hover {
+    cursor: pointer;
+}
+.to-login-Button {
+    cursor: pointer;
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+    background-color: #D7BBF5;
+    color: #322653;
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    
+ 
+}
