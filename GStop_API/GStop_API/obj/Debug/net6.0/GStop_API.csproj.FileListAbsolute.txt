@@ -195,3 +195,4 @@ D:\Projects\GSTOP\GStop-Final\GStop_API\GStop_API\bin\Debug\net6.0\GStop_API.pdb
 D:\Projects\GSTOP\GStop-Final\GStop_API\GStop_API\obj\Debug\net6.0\GStop_API.csproj.CopyComplete
 D:\Projects\GSTOP\GStop-Final\GStop_API\GStop_API\obj\Debug\net6.0\GStop_API.genruntimeconfig.cache
 D:\Projects\GSTOP\GStop-Final\GStop_API\GStop_API\obj\Debug\net6.0\ref\GStop_API.dll
+D:\ReactJS\GStop\GStop_API\GStop_API\obj\Debug\net6.0\GStop_API.MvcApplicationPartsAssemblyInfo.cs

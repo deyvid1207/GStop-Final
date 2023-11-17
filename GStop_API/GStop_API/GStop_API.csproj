@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GStop.Common\GStop.Common.csproj" />
     <ProjectReference Include="..\GStop.Core\GStop.Core.csproj" />
     <ProjectReference Include="..\GStop.Data.Models\GStop.Data.Models.csproj" />
     <ProjectReference Include="..\GStop.Data\GStop.Data.csproj" />

@@ -13,6 +13,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
+using GStop_API.Common;
 
 namespace GStop_API.Controllers
 {
@@ -23,46 +25,50 @@ namespace GStop_API.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly IUserServices _userServices;
         private readonly ILogger<LoginModel> _logger;
         private readonly IConfiguration _configuration;
         public UserController(UserManager<ApplicationUser> userManager,
             IUserServices userServices, ILogger<LoginModel> logger, 
             SignInManager<ApplicationUser> signInManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            RoleManager<IdentityRole<Guid>> roleManager)
         {
             _userManager = userManager;
             _userServices = userServices;
             _logger = logger;
             _signInManager = signInManager;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
-        [HttpPost("Registration")]
-        public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDTO userForRegistration)
-        {
-            if (userForRegistration == null || !ModelState.IsValid)
-                return BadRequest(ModelState);
-            var user = new ApplicationUser
-            {
-                Id = Guid.NewGuid(),
-                Email = userForRegistration.Email,
-                UserName = userForRegistration.UserName,
-               
-                Money = 0,
-            };
-            var result = await _userManager.CreateAsync(user, userForRegistration.Password);
-            if (!result.Succeeded)
-            {
-                return HandleErrors(result);
-            }
 
-            return StatusCode(201);
-        }
-        [HttpPost("Login")]
-        public async Task<IActionResult> LogUser([FromBody] UserLoginDTO userForRegistration)
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] UserForRegistrationDTO model)
         {
-            var user = await _userManager.FindByEmailAsync(userForRegistration.Email);
-            if (user != null && await _userManager.CheckPasswordAsync(user, userForRegistration.Password))
+            var userExists = await _userManager.FindByEmailAsync(model.UserName);
+            if (userExists != null)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            ApplicationUser user = new()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.UserName
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok();
+        }
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -87,7 +93,39 @@ namespace GStop_API.Controllers
             }
             return Unauthorized();
         }
+        [HttpPost]
+        [Route("register-admin")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] UserForRegistrationDTO model)
+        {
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
+            if (userExists != null)
+                return StatusCode(StatusCodes.Status500InternalServerError);
 
+            ApplicationUser user = new()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.UserName
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+           
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+ 
+
+            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+            }
+            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.User);
+            }
+            return Ok();
+        }
         [HttpPost("Logout")]
         public async Task<IActionResult> LogOutUser()
         {
@@ -99,28 +137,38 @@ namespace GStop_API.Controllers
             var errors = result.Errors.Select(e => e.Description);
             return BadRequest(new { Errors = errors });
         }
-        [HttpGet("GetUser")]   
-        public async Task<IActionResult> GetCurrentUser()
-        {
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserName = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            ApplicationUser user = await _userManager.FindByNameAsync(currentUserName);
-            return Ok(user);
-        }
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var validIssuer = _configuration["JWT:ValidIssuer"];
+            var validAudience = _configuration["JWT:ValidAudience"];
+            var secret = _configuration["JWT:SecretKey"];
+
+            if (string.IsNullOrEmpty(validIssuer) || string.IsNullOrEmpty(validAudience) || string.IsNullOrEmpty(secret))
+            {
+                // Log or handle the case where one of the values is null or empty
+                throw new InvalidOperationException("JWT configuration is incomplete");
+            }
+
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
+                issuer: validIssuer,
+                audience: validAudience,
                 expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
+            );
 
             return token;
         }
+        [HttpGet("get-user")]
+        public async Task<IActionResult> GetCurrentUser(string username)
+        {
+            var user = await _userServices.GetUserByUsername(username);
+   
+            return Ok(user);
+        }
+
         //FINISH WORK
         //https://www.c-sharpcorner.com/article/jwt-authentication-and-authorization-in-net-6-0-with-identity-framework/
 

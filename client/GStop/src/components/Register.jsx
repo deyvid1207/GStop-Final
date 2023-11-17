@@ -33,7 +33,7 @@ function Register() {
     
   
     try {
-      const response = await fetch(`${API_URL}/api/accounts/Registration`, {
+      const response = await fetch(`${API_URL}/api/accounts/register`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -49,7 +49,7 @@ function Register() {
   
       console.log("After fetch");
   
-      if (response.status !== 201) {
+      if (response.status !== 200) {
         console.log(response.status);
         if(password !== confirmPassword) {
           alert("Passwords must match!")

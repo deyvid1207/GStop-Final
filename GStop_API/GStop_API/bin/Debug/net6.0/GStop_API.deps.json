@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "GStop_API/1.0.0": {
         "dependencies": {
+          "GStop.Common": "1.0.0",
           "GStop.Core": "1.0.0",
           "GStop.DTOs": "1.0.0",
           "GStop.Data": "1.0.0",

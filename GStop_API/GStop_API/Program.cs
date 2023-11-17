@@ -11,11 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
  
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
-
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+ConfigurationManager configuration = builder.Configuration;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -23,24 +24,30 @@ builder.Services.AddDbContext<GStopDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
-
+builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
     .AddRoles<IdentityRole<Guid>>()
     .AddEntityFrameworkStores<GStopDbContext>()
     .AddDefaultTokenProviders();
 
-// Add services to the container.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-   .AddCookie(options =>
-   {
-       options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-       options.Cookie.Name = "LoginCookie";
-       options.LoginPath = "/Account/Login";
-       // Configure other options as needed
-   });
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = configuration["JWT:ValidAudience"],
+        ValidIssuer = configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]))
+    };
+});
 builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling
 = Newtonsoft.Json.ReferenceLoopHandling.Ignore).AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
 = new DefaultContractResolver());
