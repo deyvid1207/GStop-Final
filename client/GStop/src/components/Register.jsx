@@ -5,7 +5,12 @@ import  './styles/responsive/ResponsiveRegister.css'
 import API_URL from "../API_URL";
 
 function Register() {
-    
+  var check = JSON.parse(localStorage.getItem('currentUser'));
+  if( check !== null) {
+
+    return <>
+    <h1>Please go to the home page!</h1></>
+  }
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

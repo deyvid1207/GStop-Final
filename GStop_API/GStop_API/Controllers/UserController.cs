@@ -126,12 +126,8 @@ namespace GStop_API.Controllers
             }
             return Ok();
         }
-        [HttpPost("Logout")]
-        public async Task<IActionResult> LogOutUser()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Ok(new { Message = "Logout successful" });
-        }
+        
+     
         private IActionResult HandleErrors(IdentityResult result)
         {
             var errors = result.Errors.Select(e => e.Description);

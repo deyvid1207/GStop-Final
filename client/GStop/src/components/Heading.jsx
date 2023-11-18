@@ -1,22 +1,33 @@
-import { useEffect, useState } from "react";
-import './styles/Heading.css'; 
-import './styles/responsive/ResponsiveHeading.css'; 
-import { Outlet, NavLink } from "react-router-dom";
+// Heading.js
+import React, { useEffect } from 'react';
+import { Outlet, NavLink } from 'react-router-dom';
+import { useAuth } from '../AuthenticationCheck';
 import { useUser } from '../UserContext';
-
+import './styles/Heading.css';
+import './styles/responsive/ResponsiveHeading.css';
+import * as jwt from 'jwt-decode';
+import Logout from '../Logout';
+ 
 function Heading() {
-  const { user, updateUser } = useUser();
-  const [isLoggedIn, setTrue] = useState(false);
+ 
+   
+ 
+console.log(localStorage) 
+var storedUser;
+  // Save user data to localStorage when the user changes
+    // Check if user data is in localStorage when the component mounts
+     storedUser = JSON.parse(localStorage.getItem('currentUser'));
+     console.log(storedUser)
+     if(storedUser) {
+ 
+     }
+  // Empty dependency array to run only once
 
   useEffect(() => {
-    // Use useEffect to update the state only after the component has rendered
-    if (user) {
-      setTrue(true);
-    } else {
-      setTrue(false);
-    }
-  }, [user]);
-
+    // Save user data to localStorage when the user changes
+    localStorage.setItem('currentUser', JSON.stringify(storedUser));
+  }, [storedUser]);
+  
   return (
     <div>
       <header>
@@ -26,10 +37,10 @@ function Heading() {
             <li><NavLink to="/games">All Games</NavLink></li>
             <h3 className="Title"><NavLink to="/">GStop</NavLink></h3>
 
-            {isLoggedIn ? (
+            {storedUser !== null ? (
               <>
-                <li className="right"><NavLink to="/dashboard">Welcome ${user.UserName}</NavLink></li>
-                <li className="last"><NavLink to="/logout">Logout</NavLink></li>
+                <li className="right"><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
+                <li className="last"><button onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>
               </>
             ) : (
               <>
@@ -40,7 +51,6 @@ function Heading() {
           </ul>
         </div>
       </header>
-      <Outlet />
     </div>
   );
 }

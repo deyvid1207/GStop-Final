@@ -1,0 +1,77 @@
+.register-slogan {
+    background-color: #974EC3;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-form-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #504099;
+    padding-bottom: 10em;
+     
+}
+.login-form {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top: 2em;
+}
+.form-div {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    padding: 9em 0 3em 1em;
+     
+    gap: 2em;
+}
+.login-title {
+    color:cornsilk;
+    font-size: 3em;
+    text-transform: uppercase;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.login--subtitle {
+    color:cornsilk;
+    font-size: 1.9em;
+    text-transform: capitalize;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.login-label {
+    color:white;
+    font-size: 2em;
+}
+.login-input {
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+}
+.login-createButton {
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+    background-color: #D7BBF5;
+    color: #322653;
+    font-size: 1.2em;
+    font-weight: bolder;
+    
+}
+.login-createButton:hover {
+    cursor: pointer;
+}
+.to-login-Button {
+    cursor: pointer;
+    padding: 0.5em 7em 0.5em 7em;
+    border-radius: 2em;
+    border: 0;
+    background-color: #D7BBF5;
+    color: #322653;
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    
+ 
+}

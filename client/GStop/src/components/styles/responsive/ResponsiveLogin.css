@@ -1,0 +1,9 @@
+@media (width <= 600px) {
+    .login-form-back {
+     padding-bottom: 12.5em;
+     
+    }
+    .login-form {
+        margin-top: 9em;
+    }
+}

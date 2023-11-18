@@ -3,12 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from '../UserContext';
 import API_URL from "../API_URL";
 import * as jwt from 'jwt-decode';
+import './styles/Login.css'
+import  './styles/responsive/ResponsiveLogin.css'
 
 function Login() {
+  const navigate = useNavigate();
+  var check = JSON.parse(localStorage.getItem('currentUser'));
+  if( check !== null) {
+    console.log("You should not be here")
+ 
+    return (
+     <h1>Please return to the home page!</h1>
+    );
+    navigate("/");
+ 
+  }  
+  else {
+
+  
   const { user, updateUser } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -40,7 +56,7 @@ function Login() {
 
       // Save the token to localStorage
       localStorage.setItem('token', data.token);
-      console.log(localStorage);
+      
       // Decode the token
       const decoded = jwt.jwtDecode(localStorage.getItem('token'))
       const currentuser = await fetch(`${API_URL}/api/accounts/get-user?username=${decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']}`, {
@@ -50,9 +66,13 @@ function Login() {
           'Content-type': 'application/json'
         },
       }).then(r => r.json())
-      updateUser(currentuser);
-      console.log(currentuser);
+   
       
+ 
+    
+      localStorage.setItem('currentUser', JSON.stringify(currentuser));
+      console.log(currentuser);
+     
       // The decoded object will contain the claims in the JWT token
       console.log(decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']);
 
@@ -61,6 +81,7 @@ function Login() {
 
       // Redirect to the desired page
       navigate("/");
+      window.location.reload(false);
     } else {
       console.log("Login failed");
       console.log(response.status);
@@ -68,6 +89,7 @@ function Login() {
   };
 
   return (
+    <div className="login-form-back"> 
     <div className="login-form">
       <form onSubmit={logIn}>
         <div className="form-div">
@@ -81,7 +103,8 @@ function Login() {
         </div>
       </form>
     </div>
+    </div>
   );
-}
+} }
 
 export default Login;

@@ -3,7 +3,6 @@
     "",
     "\\GStop_API",
     "\\GStop_API\\GStop.Common",
-    "\\GStop_API\\GStop.Data.Models\\Models",
     "\\GStop_API\\GStop.DTOs",
     "\\GStop_API\\GStop.DTOs\\DTOs",
     "\\GStop_API\\GStop.DTOs\\DTOs\\UserDTOs",
@@ -11,6 +10,6 @@
     "\\GStop_API\\GStop_API",
     "\\GStop_API\\GStop_API\\Controllers"
   ],
-  "SelectedNode": "\\GStop_API\\GStop_API.sln",
+  "SelectedNode": "\\GStop_API\\GStop_API\\Controllers\\UserController.cs",
   "PreviewInSolutionExplorer": false
 }
