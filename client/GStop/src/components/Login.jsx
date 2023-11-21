@@ -67,10 +67,11 @@ function Login() {
         },
       }).then(r => r.json())
    
-      
+      console.log(currentuser);
  
     
-      localStorage.setItem('currentUser', JSON.stringify(currentuser));
+      localStorage.setItem('currentUser', JSON.stringify(currentuser.user));
+      localStorage.setItem('UserRole', JSON.stringify(currentuser.Role));
       console.log(currentuser);
      
       // The decoded object will contain the claims in the JWT token

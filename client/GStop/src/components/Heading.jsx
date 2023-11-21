@@ -34,7 +34,7 @@ var storedUser;
         <div className="header">
           <ul>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/games">All Games</NavLink></li>
+            <li><NavLink to="/shop">All Games</NavLink></li>
             <h3 className="Title"><NavLink to="/">GStop</NavLink></h3>
 
             {storedUser !== null ? (

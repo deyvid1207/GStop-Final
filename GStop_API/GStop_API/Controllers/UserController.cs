@@ -15,6 +15,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration;
 using GStop_API.Common;
+using Azure;
 
 namespace GStop_API.Controllers
 {
@@ -112,9 +113,9 @@ namespace GStop_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-           
+                await _roleManager.CreateAsync(new IdentityRole<Guid>(UserRoles.Admin));
             if (!await _roleManager.RoleExistsAsync(UserRoles.User))
- 
+                await _roleManager.CreateAsync(new IdentityRole<Guid>(UserRoles.User));
 
             if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
             {
@@ -126,8 +127,8 @@ namespace GStop_API.Controllers
             }
             return Ok();
         }
-        
-     
+
+
         private IActionResult HandleErrors(IdentityResult result)
         {
             var errors = result.Errors.Select(e => e.Description);
@@ -161,8 +162,12 @@ namespace GStop_API.Controllers
         public async Task<IActionResult> GetCurrentUser(string username)
         {
             var user = await _userServices.GetUserByUsername(username);
-   
-            return Ok(user);
+            if (await _userManager.IsInRoleAsync(user, "Admin"))
+            {
+                return Ok(new { user, Role = "Admin"});
+            }
+
+            return Ok(new { user, Role = "User" });
         }
 
         //FINISH WORK
