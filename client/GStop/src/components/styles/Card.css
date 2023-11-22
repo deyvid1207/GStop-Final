@@ -1,0 +1,71 @@
+.card {
+    width: 18rem;
+    height: 350px; /* Adjust the height based on your design preference */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+    margin: 10px;
+    padding-bottom: 3em;
+    background-color: #ddd;
+  }
+  .img-div{
+    overflow: hidden;
+    background-image: url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-23.jpg') ;
+    width: 100%;
+    min-height: 70%; 
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    min-height: 71%; /* Adjust the height based on your design preference */
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .game-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    max-height: 5em; /* Adjust the maximum height for the title */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .game-price,
+  .game-Quantity {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .button-row button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button-row button:hover {
+    background-color: #45a049;
+  }
+  

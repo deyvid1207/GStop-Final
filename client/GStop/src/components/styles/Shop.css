@@ -1,0 +1,60 @@
+img
+{
+background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-23.jpg');
+ 
+
+}
+.page {
+    display: flex;
+    flex-direction: column;
+  
+    background-color: #504099;
+}
+.games {
+    display: flex;
+   
+    flex-direction: row;
+    gap:0.2em
+}
+.game-head-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+.game-of-the-week {
+    background-color: #974EC3;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.article {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: burlywood;
+    margin: 3em;
+    border-radius: 2em;
+     
+}
+.game-otw-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 3em
+}
+.img-gotw {
+    height: 500px;
+    margin-bottom: 3em;
+    border-radius: 2em;
+}
+.Title-game {
+    color:white;
+ 
+    padding: 1em;
+    border-radius: 2em;
+    font-size: 4em;
+}

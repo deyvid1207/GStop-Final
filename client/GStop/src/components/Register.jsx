@@ -5,18 +5,20 @@ import  './styles/responsive/ResponsiveRegister.css'
 import API_URL from "../API_URL";
 
 function Register() {
+  const navigate = useNavigate();
+
   var check = JSON.parse(localStorage.getItem('currentUser'));
   if( check !== null) {
 
-    return <>
-    <h1>Please go to the home page!</h1></>
+    useEffect(() => {
+      navigate("/")
+  })
   }
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
-  const navigate = useNavigate();
-
+ 
   console.log(API_URL)
   const handleName = (e) => {
     setName(e.target.value);

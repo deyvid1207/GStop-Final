@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API_URL from "../API_URL";
  
+ 
 function AddGame() {
-
+  const navigate = useNavigate();
+  var check = JSON.parse(localStorage.getItem('currentUser'));   
+  //Authorization
+  var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
+  if(check === null ) {
+    useEffect(() => {
+    navigate("register");
+    });
+  }
+  else if(RoleAuth !== "Admin") {
+    useEffect(() => {
+      navigate("/")
+  })
+  }
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [ImgURL, setImgURL] = useState('');
     const [Price, setPrice] = useState('');
 
+  
     const handleName = (e) => {
         setName(e.target.value);
       };
@@ -44,6 +60,7 @@ function AddGame() {
         catch (error) {
           console.log(error)
         }
+        navigate("/shop")
       }
     return <>
        <form onSubmit={createGame}>

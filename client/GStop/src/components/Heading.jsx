@@ -39,7 +39,9 @@ var storedUser;
 
             {storedUser !== null ? (
               <>
-                <li className="right"><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
+                <li  className="right">{storedUser.Money}$</li>
+                <li ><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
+               
                 <li className="last"><button onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>
               </>
             ) : (

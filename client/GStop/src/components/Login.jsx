@@ -12,10 +12,9 @@ function Login() {
   if( check !== null) {
     console.log("You should not be here")
  
-    return (
-     <h1>Please return to the home page!</h1>
-    );
-    navigate("/");
+    useEffect(() => {
+      navigate("/")
+  })
  
   }  
   else {
