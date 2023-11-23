@@ -75,12 +75,15 @@ function Shop() {
   
     fetchData();
   }, [search]);
-
+    function getDetails(id) {
+       localStorage.setItem('game-id', id)
+       navigate(`/details?id=${id}`)
+    }
   return (
     <div className="page">
       <div className="game-of-the-week">
-        <h1 className="GOTW-Title">Game of the week</h1>
-        <div className="game">
+        <h1 className="GOTW-Title">Highlighted game</h1>
+        <div className="game" key={game.Id}>
 
           <div className="game-head">
               <h3 className="game-title">{game.Name}</h3>
@@ -89,7 +92,7 @@ function Shop() {
           <div className="game-content">
           <h3 className="game-desc">{game.Description}</h3>
           <h3 className="game-price-1">Get now for {game.Price}$</h3>
-          <button className="game-dets">Details</button >
+          <button className="game-dets" key={game.Id} onClick={() => getDetails(game.Id)}value={game.id}>Details</button>
             </div>
           
         </div>

@@ -3,7 +3,10 @@ function Card(game) {
 
     //Authorization
     var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
-
+    function getDetails(id) {
+      localStorage.setItem('game-id', id)
+      navigate(`/details/{id=?${id}}`)
+   }
     
     return <>
     <div className="card"  >
@@ -13,7 +16,7 @@ function Card(game) {
       <p className='game-price'>Price: {game.Price}$</p>
       <p className='game-Quantity'>Available:{game.Count}</p>
       <div className='button-row'>
-          <button>View Details</button>
+          <button onClick={() => getDetails(game.Id)}>View Details</button>
           <button>Buy</button>
           {RoleAuth === 'Admin' ? 
            <button>Edit</button>

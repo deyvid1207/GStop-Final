@@ -5,7 +5,7 @@ import Login from './Login';
 import Register from './Register';
 import Shop from './Shop';
 import AddGame from './AddGame';
- 
+import Details from './Details';
  
 
 const App = () => {
@@ -18,6 +18,7 @@ const App = () => {
           <Route exact path="/shop"element={<Shop/>}></Route> 
           <Route exact path="/register"element={<Register/>}></Route>
           <Route exact path="/addGame"element={<AddGame/>}></Route>
+          <Route exact path="/details"element={<Details/>}></Route>
        
            <Route exact path="/login"element={<Login/>}></Route>
  
