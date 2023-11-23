@@ -62,6 +62,27 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
  .game-content {
     margin-top: 11em;
  }
+ .searchBar-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+ }
+ .searchBar {
+
+   padding: 1em;
+  width: 60em;
+   border: none;
+   border-radius: 2em;
+   text-align: left;
+ }
+ .icon{
+    margin-left: 81em;
+    margin-top: -2.25em;
+    
+ }
+ .icon:hover {
+    cursor:pointer;
+ }
 .game-price-1 {
     color:white;
     font-size: 3.5em; 

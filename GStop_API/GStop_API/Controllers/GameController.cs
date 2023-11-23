@@ -51,6 +51,12 @@ namespace GStop_API.Controllers
            
 
         }
+        [HttpGet("searchGame/{input}")]
+        public async Task<IActionResult> SearchGame(string input)
+        {
+            List<Game> games =  _gameServices.SearchAsync(input);
+            return Ok(games);
+        }
         //Read
 
         [HttpGet("GetGame/{id}")]
@@ -79,7 +85,7 @@ namespace GStop_API.Controllers
 
         }
         //Delete
-        [HttpPost("DeleteGame")]
+        [HttpPost("DeleteGame/{id}")]
         public async Task<IActionResult> DeleteGame(int id)
         {
             await _gameServices.DeleteGameAsync(id);
