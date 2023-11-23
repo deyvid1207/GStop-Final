@@ -9,7 +9,7 @@ function Card(game) {
     <div className="card"  >
   <img className="card-img-top" src={game.ImgURL}/>
   <div className="card-body">
-      <p className='game-title'>{game.Name}</p>
+      <p className='game-title-card'>{game.Name}</p>
       <p className='game-price'>Price: {game.Price}$</p>
       <p className='game-Quantity'>Available:{game.Count}</p>
       <div className='button-row'>

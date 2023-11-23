@@ -31,30 +31,76 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
     justify-content: center;
     text-align: center;
 }
-.article {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: burlywood;
-    margin: 3em;
-    border-radius: 2em;
-     
-}
+ 
 .game-otw-div {
     display: flex;
     justify-content: center;
     flex-direction: row;
     gap: 3em
 }
-.img-gotw {
+.game-img   {
     height: 500px;
+  width: 80%;
     margin-bottom: 3em;
     border-radius: 2em;
 }
-.Title-game {
+.game-title {
+    color:white;
+    font-size: 4em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.game-desc {
+    color:white;
+    font-size: 2em;
+    max-width: 15em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.game-content .game-head {
+    display: flex;
+    flex-direction: column;
+}
+ .game-content {
+    margin-top: 11em;
+ }
+.game-price-1 {
+    color:white;
+    font-size: 3.5em; 
+    font-weight: 700;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.game-dets {
+    padding: 1em;
+    padding-left: 8em;
+    padding-right: 8em;
+    background-color:cadetblue;
+    border: 0;
+    border-radius: 3em;
+    color: aliceblue;
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 550;
+}
+.game-dets:hover {
+    cursor: pointer;
+}
+ 
+.game {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    background-color: #503099;
+    border: 4px oldlace solid;
+    border-radius: 7em;
+    padding-left: 10em;
+    padding-right: 10em;
+    margin-bottom: 2em;
+  
+}
+.GOTW-Title {
     color:white;
  
-    padding: 1em;
-    border-radius: 2em;
-    font-size: 4em;
+ 
+    font-size: 3em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

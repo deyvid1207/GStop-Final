@@ -35,10 +35,11 @@ var storedUser;
           <ul>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/shop">All Games</NavLink></li>
-            <h3 className="Title"><NavLink to="/">GStop</NavLink></h3>
+      
 
             {storedUser !== null ? (
               <>
+                     <h3 className="Title-If"><NavLink to="/">GStop</NavLink></h3>
                 <li  className="right">{storedUser.Money}$</li>
                 <li ><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
                
@@ -46,6 +47,7 @@ var storedUser;
               </>
             ) : (
               <>
+                 <h3 className="Title"><NavLink to="/">GStop</NavLink></h3>
                 <li className="right"><NavLink to="/register">Register</NavLink></li>
                 <li className="last"><NavLink to="/login">Login</NavLink></li>
               </>
