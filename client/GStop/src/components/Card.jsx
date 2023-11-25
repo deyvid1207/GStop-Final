@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import './styles/Card.css'
+ 
 function Card(game) {
-
+    const navigate = useNavigate();
     //Authorization
     var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
     function getDetails(id) {
+      
       localStorage.setItem('game-id', id)
-      navigate(`/details/{id=?${id}}`)
+      navigate(`/details?id=${id}`)
    }
     
     return <>
@@ -16,7 +19,7 @@ function Card(game) {
       <p className='game-price'>Price: {game.Price}$</p>
       <p className='game-Quantity'>Available:{game.Count}</p>
       <div className='button-row'>
-          <button onClick={() => getDetails(game.Id)}>View Details</button>
+          <button key={game.Id} onClick={() => getDetails(game.Id)}value={game.id}>View Details</button>
           <button>Buy</button>
           {RoleAuth === 'Admin' ? 
            <button>Edit</button>

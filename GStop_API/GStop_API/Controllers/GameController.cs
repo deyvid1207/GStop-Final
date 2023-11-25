@@ -59,7 +59,7 @@ namespace GStop_API.Controllers
         }
         //Read
 
-        [HttpGet("GetGame/{id}")]
+        [HttpGet("GetGame")]
 
         public async Task<IActionResult> GetGame(int id)
         {
@@ -67,7 +67,7 @@ namespace GStop_API.Controllers
             var game = await _gameServices.FindGameAsync(id);
             if (game == null)
             {
-                return NotFound();
+                return BadRequest();
             }
             return Ok(game);
 

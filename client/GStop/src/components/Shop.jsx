@@ -17,64 +17,57 @@ function Shop() {
   console.log(search);
   useEffect(() => {
     const fetchData = async () => {
-      //Authentication
-    
+      // Authentication
       var check = JSON.parse(localStorage.getItem('currentUser'));   
-      //Authorization
-      
-       console.log(search)
-       console.log(check)
-  
+      // Authorization
+      console.log(search);
+      console.log(check);
+
       if (check === null) {
         navigate("/register");
         return;
       }
-    
-      if  (search === '' ) { 
-      try {
-        // Replace the URL with the actual endpoint for your games
-        const response = await fetch(`${API_URL}/api/game/GetAllGames`);
-        const data = await response.json();
-  
-        console.log(data);
-        setGames(data);
-  
-        const availableGames = data.filter(game => game.Count > 0);
-        const randomIndex = Math.floor(Math.random() * availableGames.length);
-        const avgame =  availableGames[randomIndex];
-        setRandomGame(avgame);
-      } catch (error) {
-        console.error("Error fetching games:", error);
+
+      if (search === '') { 
+        // Only fetch games if the search term is not empty
+        try {
+          const response = await fetch(`${API_URL}/api/game/GetAllGames`);
+          const data = await response.json();
+          console.log(data);
+          setGames(data);
+
+          const availableGames = data.filter(game => game.Count > 0);
+          const randomIndex = Math.floor(Math.random() * availableGames.length);
+          const avgame = availableGames[randomIndex];
+          setRandomGame(avgame);
+        } catch (error) {
+          console.error("Error fetching games:", error);
+        }
+      } else {
+        // Fetch games based on the non-empty search term
+        try {
+          console.log(search);
+          const response = await fetch(`${API_URL}/api/game/searchGame?input=${search}`, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-type': 'application/json'
+            },
+          });
+          const data = await response.json();
+          if (data) {
+            console.log(data);
+            setGames(data);
+          }
+        } catch (error) {
+          console.error("Error fetching games:", error);
+        }
       }
-    }
-    else {
-      try {
-
-        console.log(search)
-        // Replace the URL with the actual endpoint for your games
-        const response = await fetch(`${API_URL}/api/game/searchGame?input=${search}`, {
-
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-          },
-
-        });
-        const data = await response.json();
-  if(data)
-        console.log(data);
-        setGames(data);
-  
- 
-      } catch (error) {
-        console.error("Error fetching games:", error);
-      }
-    }
     };
-  
+
     fetchData();
   }, [search]);
+
     function getDetails(id) {
        localStorage.setItem('game-id', id)
        navigate(`/details?id=${id}`)
