@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './styles/Card.css'
+ 
 function Card(game) {
-
+const navigate = useNavigate();
     //Authorization
     var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
     function getDetails(id) {
       localStorage.setItem('game-id', id)
-      navigate(`/details/{id=?${id}}`)
+      navigate(`/details?id=${id}}`)
    }
     
     return <>

@@ -1,0 +1,39 @@
+.details-pg {
+    background-color: blueviolet;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+}
+.left-div {
+    background-color: #504099;
+    padding: 2em;
+    border: 3px azure solid;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+}
+.d-game-title {
+    color: azure;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.d-game-po {
+    color: azure;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-indent: 0.5em;
+}
+.d-game-img {
+    border: black 3px solid;
+}
+.right-div {
+    padding-top: 3em;
+    display: flex;
+    flex-direction: column;
+   
+}
+.d-game-desc {
+    color: aliceblue;
+    font-family:Arial, Helvetica, sans-serif;
+    font-
+}
