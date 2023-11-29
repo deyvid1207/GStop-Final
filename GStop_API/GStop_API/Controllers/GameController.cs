@@ -75,7 +75,7 @@ namespace GStop_API.Controllers
         }
         //Update
         [HttpPost("EditGame/{id}")]
-        public async Task<IActionResult> EditGame(int id, UpdateGameDTO updateGameDTO )
+        public async Task<IActionResult> EditGame(int id,[FromBody] UpdateGameDTO updateGameDTO )
         {
             var game = await _gameServices.FindGameAsync(id);
 

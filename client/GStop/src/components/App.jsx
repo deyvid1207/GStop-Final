@@ -6,6 +6,7 @@ import Register from './Register';
 import Shop from './Shop';
 import AddGame from './AddGame';
 import Details from './Details';
+import Edit from './Edit';
  
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/register"element={<Register/>}></Route>
           <Route exact path="/addGame"element={<AddGame/>}></Route>
           <Route exact path="/details"element={<Details/>}></Route>
+          <Route exact path="/edit"element={<Edit/>}></Route>
        
            <Route exact path="/login"element={<Login/>}></Route>
  

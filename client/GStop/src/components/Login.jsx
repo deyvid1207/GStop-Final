@@ -19,8 +19,7 @@ function Login() {
   }  
   else {
 
-  
-  const { user, updateUser } = useUser();
+ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   

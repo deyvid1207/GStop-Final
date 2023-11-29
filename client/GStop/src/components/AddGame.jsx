@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API_URL from "../API_URL";
+import { useAuth } from "../AuthenticationCheck";
  
  
 function AddGame() {
   const navigate = useNavigate();
-  var check = JSON.parse(localStorage.getItem('currentUser'));   
-  //Authorization
-  var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
-  if(check === null ) {
-    useEffect(() => {
-    navigate("register");
-    });
-  }
-  else if(RoleAuth !== "Admin") {
-    useEffect(() => {
-      navigate("/")
-  })
-  }
+    useAuth();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [ImgURL, setImgURL] = useState('');

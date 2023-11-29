@@ -44,6 +44,18 @@ namespace GStop_API.Services
             return user;
         }
 
-         
+        public async Task AddMoney(Guid Id)
+        {
+            var user =await GetUserById(Id);
+            if(user == null)
+            {
+
+            }
+            else {  
+            user.Money += 10;
+             
+            }
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

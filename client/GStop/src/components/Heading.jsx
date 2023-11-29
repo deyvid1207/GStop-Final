@@ -7,6 +7,8 @@ import './styles/Heading.css';
 import './styles/responsive/ResponsiveHeading.css';
 import * as jwt from 'jwt-decode';
 import Logout from '../Logout';
+import API_URL from '../API_URL';
+ 
  
 function Heading() {
  
@@ -27,7 +29,33 @@ var storedUser;
     // Save user data to localStorage when the user changes
     localStorage.setItem('currentUser', JSON.stringify(storedUser));
   }, [storedUser]);
+  console.log(storedUser.Id)
+  async function addMoney() {
+    try {
+      const response = await fetch(`${API_URL}/api/accounts/add-money`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+           "Id": storedUser.Id
+        }
+        ),
+      });
   
+      if (!response.ok) {
+        // Handle error
+        console.error('Failed to add money:', response.statusText);
+      } else {
+        // Handle success
+        console.log('Money added successfully');
+      }
+    } catch (error) {
+      // Handle network error or other issues
+      console.error('Error:', error.message);
+    }
+  }
   return (
     <div>
       <header>
@@ -40,7 +68,7 @@ var storedUser;
             {storedUser !== null ? (
               <>
                      <h3 className="Title-If"><NavLink to="/">GStop</NavLink></h3>
-                <li  className="right">{storedUser.Money}$</li>
+                <li  className="right" onClick={addMoney}>{storedUser.Money}$</li>
                 <li ><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
                
                 <li className="last"><button onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>

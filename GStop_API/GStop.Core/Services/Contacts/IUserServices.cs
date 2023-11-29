@@ -13,7 +13,7 @@ namespace GStop.Core.Services.Contacts
         public Task<ApplicationUser> GetUserByEmail(string email);
         public Task<ApplicationUser> GetUserById(Guid Id);
         public Task<ApplicationUser> SetCurrentUser(string username);
-      
+        public Task AddMoney(Guid Id);
 
     }
 }

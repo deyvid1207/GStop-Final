@@ -169,7 +169,16 @@ namespace GStop_API.Controllers
 
             return Ok(new { user, Role = "User" });
         }
+        [HttpPost("add-money")]
+        public async Task<IActionResult> AddMoney([FromBody]string Id  )
+        {
+           
+            await _userServices.AddMoney(Guid.Parse(Id));
+            
+            return Ok();
 
+             
+        }
         //FINISH WORK
         //https://www.c-sharpcorner.com/article/jwt-authentication-and-authorization-in-net-6-0-with-identity-framework/
 
