@@ -9,6 +9,7 @@ function Shop() {
   const [games, setGames] = useState([]);
   const [game, setRandomGame] = useState([]);
   const [search, setSearch] = useState('');
+  const [price, setPrice] = useState(0);
   const handleSearch = (e) => {
     setSearch(e.target.value);
    
@@ -43,6 +44,7 @@ function Shop() {
         const randomIndex = Math.floor(Math.random() * availableGames.length);
         const avgame =  availableGames[randomIndex];
         setRandomGame(avgame);
+        setPrice(avgame.Price);
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -65,8 +67,8 @@ function Shop() {
   if(data)
         console.log(data);
         setGames(data);
-  
- 
+      
+       console.log(price)
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -91,7 +93,7 @@ function Shop() {
           </div>
           <div className="game-content">
           <h3 className="game-desc">{game.Description}</h3>
-          <h3 className="game-price-1">Get now for {game.Price}$</h3>
+          <h3 className="game-price-1">Get now for {price.toFixed(2)}$</h3>
           <button className="game-dets" key={game.Id} onClick={() => getDetails(game.Id)}value={game.id}>Details</button>
             </div>
           

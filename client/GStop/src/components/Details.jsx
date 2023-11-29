@@ -6,7 +6,7 @@ import { useAuth } from "../AuthenticationCheck";
  
 function Details() {
   const [game, setGame] = useState();
-  useAuth();
+   
   const navigate = useNavigate()
   useEffect(() => {
     async function fetchGame() {
@@ -54,8 +54,9 @@ function Details() {
           <div className="d-game-button-rows">
           {game.Count > 0 ? (
 
-
-<h2 className="d-game-price">Get now for: {game.Price}$</h2>
+    
+<h2 className="d-game-price">Get now for: {game.Price.toFixed(2)}$</h2>
+ 
           ) : (
 
             <h2 className="d-game-price">Out of stock</h2>

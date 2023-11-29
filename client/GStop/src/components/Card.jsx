@@ -15,7 +15,7 @@ const navigate = useNavigate();
   <img className="card-img-top" src={game.ImgURL}/>
   <div className="card-body">
       <p className='game-title-card'>{game.Name}</p>
-      <p className='game-price'>Price: {game.Price}$</p>
+      <p className='game-price'>Price: {game.Price.toFixed(2)}$</p>
       <p className='game-Quantity'>Available:{game.Count}</p>
       <div className='button-row'>
           <button onClick={() => getDetails(game.Id)}>View Details</button>
