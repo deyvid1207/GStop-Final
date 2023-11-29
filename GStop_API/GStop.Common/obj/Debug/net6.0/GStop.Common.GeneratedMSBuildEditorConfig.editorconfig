@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GStop.Common
-build_property.ProjectDir = D:\ReactJS\GStop-v.2\GStop-Final\GStop_API\GStop.Common\
+build_property.ProjectDir = D:\Projects\GSTOP\GStop.V1.4\GStop-Final\GStop_API\GStop.Common\

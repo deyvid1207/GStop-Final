@@ -12,6 +12,9 @@
     border-radius: 2em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex: 1
 }
 .d-game-title {
     color: azure;
@@ -25,15 +28,90 @@
 }
 .d-game-img {
     border: black 3px solid;
+    width: 48em;
+    height: 50em;
 }
 .right-div {
-    padding-top: 3em;
+    padding-top: 11em;
     display: flex;
     flex-direction: column;
+    flex: 2;
    
+}
+.d-game-like {
+    color: aliceblue;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.4em;
+    text-align: center;
+    margin-top: 1.7em;
 }
 .d-game-desc {
     color: aliceblue;
     font-family:Arial, Helvetica, sans-serif;
-    font-
+    font-size: 1.75em;
+    text-align: center;
+}
+.d-game-price {
+    color: aliceblue;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    font-size: 2.3em;
+    text-align: center;
+}
+.d-game-button-rows {
+
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+ 
+    align-content: center;
+}
+.d-game-button {
+    margin-top: 1.7em ;
+    border: violet 5px solid;
+    border-radius: 4em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 5em;
+    width: 16em;
+}
+.d-game-button:hover {
+    cursor: pointer;
+    transform: scale(1.10); 
+    border: rgb(97, 30, 160)   5px solid;
+}
+.like-btn {
+ background-color:  blueviolet;
+    BORDER: none;
+    margin-top: 1.7em ;
+    width: 4em;
+    height: 4em;
+ 
+}
+.like-btn:hover{
+    cursor: pointer;
+}
+.likeSVG {
+
+    width: 4em;
+    height: 4em;
+    padding: 0.5em;
+    border-radius: 1em;
+    border: none;
+    background-color: aliceblue;
+}
+.comment-div {
+   display: flex;
+   flex-direction: column;
+   background-color: azure;
+   width: auto;
+  border: 3px grey solid;
+ 
+}
+.comment-Title {
+   text-align: center;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   text-transform: uppercase;
+
 }
