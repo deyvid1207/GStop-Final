@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\client",
+    "\\client\\GStop",
     "\\GStop_API",
-    "\\GStop_API\\GStop.Common",
     "\\GStop_API\\GStop.DTOs",
     "\\GStop_API\\GStop.DTOs\\DTOs",
     "\\GStop_API\\GStop.DTOs\\DTOs\\UserDTOs",
