@@ -17,7 +17,8 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "reactjs-popup": "^2.0.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

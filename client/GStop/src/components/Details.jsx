@@ -63,8 +63,11 @@ function Details() {
           )}
          
           {JSON.parse(localStorage.getItem('UserRole')) !== 'Admin' ? ( 
-            <button className="d-game-button">Purchase now!</button>) : 
-         ( <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>)
+            <button className="d-game-button">Purchase now!</button>) : ( 
+     
+         <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>)
+       
+     
           }
             <button className="like-btn"> 
             <svg className="likeSVG"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 486.926 486.926" xml:space="preserve">  

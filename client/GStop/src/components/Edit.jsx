@@ -45,7 +45,13 @@ console.log(location)
           price: Price,
         })      
       }).then(j => j.json()).then();
-      navigate(`/details?id=${location.state.Id}`);
+      if(localStorage.getItem('game-location') === 'shop') {
+        navigate(`/shop`)
+       }
+       else {
+        navigate(`/details?id=${location.state.Id}`);
+       }
+     
   }
   
     return <>   

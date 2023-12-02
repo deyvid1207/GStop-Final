@@ -1,0 +1,50 @@
+.popup-content {
+    margin-right: 2em;
+    background: rgb(255, 255, 255);
+    width: 80%;
+    padding: 8px;
+    border-radius: 2em;
+    border: 5px black solid
+  }
+  .popup-arrow {
+    color: rgb(255, 255, 255);
+  }
+  [role='tooltip'].popup-content {
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+  }
+  
+  .popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  [data-popup='tooltip'].popup-overlay {
+    background: transparent;
+  }
+  .confirm {
+    background-color: brown;
+    border: 0;
+    padding: 0.3em;
+    border-radius: 2em;
+    color : azure;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+  .deny {
+    background-color: darkolivegreen;
+    border: 0;
+    padding: 0.3em;
+    border-radius: 2em;
+    color : azure;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+  .confirm:hover, .deny:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  .confirm-buts {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: center;
+  }

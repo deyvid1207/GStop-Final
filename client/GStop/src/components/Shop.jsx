@@ -10,6 +10,7 @@ function Shop() {
   const [game, setRandomGame] = useState([]);
   const [search, setSearch] = useState('');
   const [price, setPrice] = useState(0);
+  const [length, setLength] = useState(0);
   const handleSearch = (e) => {
     setSearch(e.target.value);
    
@@ -36,7 +37,7 @@ function Shop() {
         // Replace the URL with the actual endpoint for your games
         const response = await fetch(`${API_URL}/api/game/GetAllGames`);
         const data = await response.json();
-  
+        setLength(data.length);
         console.log(data);
         setGames(data);
   
@@ -79,10 +80,14 @@ function Shop() {
   }, [search]);
     function getDetails(id) {
        localStorage.setItem('game-id', id)
+     
        navigate(`/details?id=${id}`)
     }
+   
   return (
+   
     <div className="page">
+      {length > 0 ?  ( 
       <div className="game-of-the-week">
         <h1 className="GOTW-Title">Highlighted game</h1>
         <div className="game" key={game.Id}>
@@ -96,9 +101,10 @@ function Shop() {
           <h3 className="game-price-1">Get now for {price.toFixed(2)}$</h3>
           <button className="game-dets" key={game.Id} onClick={() => getDetails(game.Id)}value={game.id}>Details</button>
             </div>
-          
+            
         </div>
       </div>
+        ) : <></>  } 
       <div className="searchBar-div">
         <form> 
           <input className="searchBar" onChange={handleSearch} type="text" value={search} placeholder="Search..." /> 
