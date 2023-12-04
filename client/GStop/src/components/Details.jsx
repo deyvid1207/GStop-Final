@@ -59,7 +59,10 @@ function Details() {
     
     navigate("/")
     window.location.reload();
-   } }
+   }
+  else{
+    alert(`You don't have enough money to purchase${game.Name}`)
+  } }
 
    async function LikeGame() {
     const response = await fetch(`${API_URL}/api/game/LikeGame/${game.Id}`, {
@@ -101,7 +104,7 @@ function Details() {
           )}
          
           {JSON.parse(localStorage.getItem('UserRole')) !== 'Admin' ? ( 
-            <button className="d-game-button" onClick={BuyGame}>Purchase now!</button>) : ( 
+            <button className="d-game-button" onClick={BuyGame}><h3>Purchase now</h3></button>) : ( 
      
          <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>)
        

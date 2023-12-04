@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import './styles/Card.css'
 import './styles/Popup.css'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import API_URL from '../API_URL';
 function Card(game) {
 const navigate = useNavigate();
+const [user, setUser] = useState();
     //Authorization
     var RoleAuth = JSON.parse(localStorage.getItem('UserRole'));
     function getDetails(id) {
@@ -17,6 +18,11 @@ const navigate = useNavigate();
     localStorage.setItem('game-location', 'shop')
     {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}
  }
+ useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('currentUser')))
+  
+ }, [])
+  
  
     return <>
     <div className="card"  >
@@ -57,7 +63,7 @@ navigate("/deleteConfirm")
             </div>
          
            )
-        :  <button>Buy</button>}
+        :  <></>}
       </div>
   </div>
 </div>

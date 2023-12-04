@@ -159,13 +159,14 @@ namespace GStop.Core.Services
             return d;
 
         }
-        public async Task BuyGame(int Id, string username)
+        public async Task<bool> BuyGame(int Id, string username)
         {
             var game = await _dbContext.Games.FirstOrDefaultAsync(x => x.Id == Id);
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == username);
             var comments = new List<Comment>();
             if (user == null || game == null)
-            { return;
+            {
+                return false;
             }
             if (user.Money >= game.Price)
             {
@@ -177,8 +178,17 @@ namespace GStop.Core.Services
                     _dbContext.Games.Remove(game);
                     _dbContext.Comments.RemoveRange(comments);
                 }
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
-            await _dbContext.SaveChangesAsync();    
+            else
+            {
+                 
+                return false;
+                 
+            }
+            
+
 
         }
 

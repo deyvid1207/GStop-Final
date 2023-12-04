@@ -117,8 +117,15 @@ namespace GStop_API.Controllers
         [HttpPost("PurchaseGame/{id}")]
         public async Task<IActionResult> PurchaseGame(int id, [FromBody]string username)
         {
-            await _gameServices.BuyGame(id, username);
+
+            if(await _gameServices.BuyGame(id, username))
+            {
+
+         
+             
             return StatusCode(201);
+            }
+            return BadRequest();
         }
     }
 }

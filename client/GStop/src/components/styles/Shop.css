@@ -44,10 +44,26 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
     margin-bottom: 3em;
     border-radius: 2em;
 }
+.no-game {
+    margin-left: 31.4em;
+    display: flex;
+    flex-direction: column;
+}
+.ng-Title {
+    color:white;
+    font-size: 3em;
+    text-transform: capitalize;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .game-title {
     color:white;
     font-size: 4em;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.image {
+     border: 11px violet solid;
+     border-radius: 5em;
 }
 .game-desc {
     color:white;
@@ -78,6 +94,7 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
  .icon{
     margin-left: 81em;
     margin-top: -2.25em;
+   
     
  }
  .icon:hover {

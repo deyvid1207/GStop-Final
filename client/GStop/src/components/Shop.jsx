@@ -124,7 +124,10 @@ function Shop() {
         ))) : (
 
 
-          <><h2>There are no games !</h2></>
+          <><div className="no-game">
+            <img className="image" src="https://assets.materialup.com/uploads/b17ea0c7-df76-4ce1-bf82-4a2cf6ae866d/preview.jpg"/>
+            <h2 className="ng-Title">No games found</h2>
+            </div></>
         )
       
       

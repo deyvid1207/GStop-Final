@@ -16,7 +16,7 @@ const App = () => {
     <Heading></Heading>
  
        <Routes>
-          <Route exact path="/" element={<Home/>}></Route>
+          <Route exact path="/"  element={<Home/>}></Route>
           <Route exact path="/shop"element={<Shop/>}></Route> 
           <Route exact path="/register"element={<Register/>}></Route>
           <Route exact path="/addGame"element={<AddGame/>}></Route>
