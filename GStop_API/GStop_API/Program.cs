@@ -3,8 +3,7 @@ using GStop.Core.Services.Contacts;
 using GStop_API.Data;
 using GStop_API.Data.Models;
 using GStop_API.Services;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

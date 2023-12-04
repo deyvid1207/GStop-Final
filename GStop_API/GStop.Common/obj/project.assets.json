@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\drn12\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\GSTOP\\GStop.V1.4\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
+      "projectUniqueName": "D:\\ReactJS\\GStop-v.4\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
       "projectName": "GStop.Common",
-      "projectPath": "D:\\Projects\\GSTOP\\GStop.V1.4\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\GSTOP\\GStop.V1.4\\GStop-Final\\GStop_API\\GStop.Common\\obj\\",
+      "projectPath": "D:\\ReactJS\\GStop-v.4\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
+      "packagesPath": "C:\\Users\\drn12\\.nuget\\packages\\",
+      "outputPath": "D:\\ReactJS\\GStop-v.4\\GStop-Final\\GStop_API\\GStop.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\drn12\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

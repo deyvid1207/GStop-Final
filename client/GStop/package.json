@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start:dev": "vite",
-    "start:api": "cd D:\\Projects\\GSTOP\\GStop.V1.4\\GStop-Final\\GStop_API\\GStop_API && dotnet run",
+    "start:api": "cd D:\\ReactJs\\GStop-v.4\\GStop-Final\\GStop_API\\GStop_API && dotnet run",
     "comment": "set the start:api route to your local route",
     "start": "concurrently \"npm run start:dev\" \"npm run start:api\""
   },

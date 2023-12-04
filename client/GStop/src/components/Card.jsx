@@ -44,7 +44,7 @@ const navigate = useNavigate();
     'Content-type': 'application/json'
   }
 }) 
-navigate("/shop")
+navigate("/deleteConfirm")
 
 
                     }}>Yes</button>

@@ -118,10 +118,18 @@ function Shop() {
 </g>
 </svg>
       <ul className="games">
-       
-        {games.map((game) => (
+       {games.length > 0 ? ( 
+        games.map((game) => (
           <Card key={game.Id} {...game} />
-        ))}
+        ))) : (
+
+
+          <><h2>There are no games !</h2></>
+        )
+      
+      
+      }
+        
       </ul>
 
       {JSON.parse(localStorage.getItem('UserRole')) === 'Admin' ? (

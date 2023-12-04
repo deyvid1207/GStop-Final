@@ -6,10 +6,12 @@ import { useAuth } from "../AuthenticationCheck";
  
 function Details() {
   const [game, setGame] = useState();
-   
+  const [user, setUser] = useState();
+  const [money, setMoney] = useState(0); 
   const navigate = useNavigate()
   useEffect(() => {
     async function fetchGame() {
+       setUser(JSON.parse(localStorage.getItem('currentUser')))
       try {
         const response = await fetch(
           `${API_URL}/api/game/GetGame/${localStorage.getItem("game-id")}`,
@@ -35,6 +37,42 @@ function Details() {
 
     fetchGame();
   }, []);
+
+  
+   async function BuyGame() {
+    console.log(user);
+    const response = await fetch(`${API_URL}/api/game/PurchaseGame/${game.Id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(user.UserName),
+    });
+    if(response.ok) {
+    const newMoney = user.Money - game.Price;
+    setMoney(newMoney);
+
+    // Update user's money in localStorage
+    const updatedUser = { ...user, Money: newMoney };
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+    
+    navigate("/")
+    window.location.reload();
+   } }
+
+   async function LikeGame() {
+    const response = await fetch(`${API_URL}/api/game/LikeGame/${game.Id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(user.UserName),
+    });
+   
+    window.location.reload();
+   }
 
   if (!game) {
     // Render a loading state or return null if game is not available yet
@@ -63,13 +101,13 @@ function Details() {
           )}
          
           {JSON.parse(localStorage.getItem('UserRole')) !== 'Admin' ? ( 
-            <button className="d-game-button">Purchase now!</button>) : ( 
+            <button className="d-game-button" onClick={BuyGame}>Purchase now!</button>) : ( 
      
          <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>)
        
      
           }
-            <button className="like-btn"> 
+            <button className="like-btn" onClick={LikeGame}> 
             <svg className="likeSVG"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 486.926 486.926" xml:space="preserve">  
 <g>
   

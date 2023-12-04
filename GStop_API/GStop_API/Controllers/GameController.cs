@@ -52,7 +52,7 @@ namespace GStop_API.Controllers
 
         }
         [HttpGet("searchGame/{input}")]
-        public async Task<IActionResult> SearchGame(string input)
+        public  IActionResult SearchGame(string input)
         {
             List<Game> games =  _gameServices.SearchAsync(input);
             return Ok(games);
@@ -100,19 +100,25 @@ namespace GStop_API.Controllers
             return Ok(selected);
         }
 
-        [HttpPost("LikeGame")]
-        public async Task<IActionResult> LikeGame(int id)
+        [HttpPost("LikeGame/{id}")]
+        public async Task<IActionResult> LikeGame(int id, [FromBody] string username)
         {
-            string userName = HttpContext.User.Identity.Name;
-            if (string.IsNullOrEmpty(userName))
+  
+            if (string.IsNullOrEmpty(username))
             {
                 // Handle the case where the user's name is not available
                 return BadRequest("User name not found.");
             }
 
-            await _gameServices.LikeGame(id, userName);
+            await _gameServices.LikeGame(id, username);
             return StatusCode(200);
 
+        }
+        [HttpPost("PurchaseGame/{id}")]
+        public async Task<IActionResult> PurchaseGame(int id, [FromBody]string username)
+        {
+            await _gameServices.BuyGame(id, username);
+            return StatusCode(201);
         }
     }
 }

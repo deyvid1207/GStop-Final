@@ -112,7 +112,7 @@ namespace GStop.Core.Services
         public async Task LikeGame(int Id, string username)
         {
             
-            var game = await _dbContext.Games.FirstOrDefaultAsync(x => x.Id == Id);
+            var game = await _dbContext.Games.Include(x => x.Likes).ThenInclude(x => x.User).FirstOrDefaultAsync(x => x.Id == Id);
             if (game != null)
             {
 
@@ -157,6 +157,28 @@ namespace GStop.Core.Services
             }
 
             return d;
+
+        }
+        public async Task BuyGame(int Id, string username)
+        {
+            var game = await _dbContext.Games.FirstOrDefaultAsync(x => x.Id == Id);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            var comments = new List<Comment>();
+            if (user == null || game == null)
+            { return;
+            }
+            if (user.Money >= game.Price)
+            {
+                user.Money -= game.Price;
+                game.Count--;
+                if (game.Count == 0)
+                {
+                    comments = game.Comments.ToList();
+                    _dbContext.Games.Remove(game);
+                    _dbContext.Comments.RemoveRange(comments);
+                }
+            }
+            await _dbContext.SaveChangesAsync();    
 
         }
 

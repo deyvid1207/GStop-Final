@@ -18,7 +18,7 @@ namespace GStop.Core.Services.Contacts
         public Task<List<Game>> GetAllGames();
 
         public  Task<Game> FindGameAsync(int id);
-
+        public  Task BuyGame(int Id, string username);
 
         public  Task<int> GetGameCount(int id);
         public  Task LikeGame(int Id, string username);
