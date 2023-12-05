@@ -8,7 +8,12 @@ function Details() {
   const [game, setGame] = useState();
   const [user, setUser] = useState();
   const [money, setMoney] = useState(0); 
+  const [comments, setcomments] = useState([]); 
+  const [comment, setComment] = useState(""); 
   const navigate = useNavigate()
+  const handlecomment = (e) => {
+    setComment(e.target.value);
+  };
   useEffect(() => {
     async function fetchGame() {
        setUser(JSON.parse(localStorage.getItem('currentUser')))
@@ -23,13 +28,25 @@ function Details() {
             },
           }
         );
-
+        const commentsrs = await fetch(
+          `${API_URL}/api/game/get-comments/${localStorage.getItem("game-id")}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch game");
         }
 
         const data = await response.json();
+        const commentData = await commentsrs.json();
         setGame(data);
+        setcomments(commentData);
+        console.log(comments);
       } catch (error) {
         console.error("Error fetching game:", error);
       }
@@ -61,7 +78,7 @@ function Details() {
     window.location.reload();
    }
   else{
-    alert(`You don't have enough money to purchase${game.Name}`)
+    alert(`You don't have enough money to purchase ${game.Name}`)
   } }
 
    async function LikeGame() {
@@ -76,6 +93,36 @@ function Details() {
    
     window.location.reload();
    }
+   async function addComment() {
+    try {
+      const response = await fetch(`${API_URL}/api/game/comment-game/${localStorage.getItem("game-id")}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          Username: user.UserName,
+          GameId: game.Id,
+          Content: comment,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to add comment: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData);
+  
+      // Optionally, you can update the comments state with the new comment
+      setcomments((prevComments) => [...prevComments, responseData]);
+  
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  }
+  
 
   if (!game) {
     // Render a loading state or return null if game is not available yet
@@ -122,7 +169,20 @@ function Details() {
 <h2 className="d-game-like">Likes: {game.Likes.length}</h2>
           </div>
           <div className="comment-div">
+            <div className="comment-data-div"> 
             <h2 className="comment-Title">Comments:</h2>
+                 {comments.map((com) => (
+             <p>{com.Content}</p>
+                   
+                 ))}
+                    
+                 </div>
+                 <div className="comment-form"> 
+                 <form onSubmit={addComment}> 
+                 <input className="comment-bar" type="text" onChange={handlecomment} value={comment} placeholder="Comment..." /> 
+                 <button type="submit" className="comment-Button">Add Comment</button>
+                 </form>
+                 </div>
           </div>
         </div>
       </div>

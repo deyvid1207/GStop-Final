@@ -1,5 +1,6 @@
 ﻿using GStop.Core.Services;
 using GStop.Core.Services.Contacts;
+using GStop.DTOs.DTOs.GameDTOs;
 using GStop_API.Data.Models;
 using GStop_API.Data.Models.Games;
 using GStop_API.DTOs.GameDTOs;
@@ -14,9 +15,11 @@ namespace GStop_API.Controllers
     public class GameController : Controller
     {
        private IGameServices _gameServices { get; set; }
-        public GameController(IGameServices gameServices) 
+       private IUserServices _userServices { get; set; }
+        public GameController(IGameServices gameServices, IUserServices userServices) 
         { 
           this._gameServices = gameServices;
+            this._userServices = userServices;
         
         }
         //Create 
@@ -126,6 +129,42 @@ namespace GStop_API.Controllers
             return StatusCode(201);
             }
             return BadRequest();
+        }
+        [HttpPost("comment-game/{id}")]
+        public async Task<IActionResult> CommentGame(int id, [FromBody] UserCommentDTO userComment)
+        {
+
+            var game = await _gameServices.FindGameAsync(id);
+            var user = await _userServices.GetUserByUsername(userComment.Username);
+            var Comment = new Comment()
+            {
+                PublishedOn = DateTime.Now,
+                Content = userComment.Content,
+                Publisher =user,
+                PublisherId = user.Id,
+                Game = game,
+                GameId = game.Id,
+            }
+            if (await _gameServices.AddComment(game, Comment, userComment.Username))
+            {
+
+                return StatusCode(201);
+            }
+            return BadRequest();
+
+
+        }
+        [HttpGet("get-comments/{id}")]
+        public async Task<IActionResult> GetComments(int id)
+        {
+
+            var game = await _gameServices.FindGameAsync(id);
+             
+            var games = await _gameServices.GetComments(game);
+                return Ok(games);
+  
+
+
         }
     }
 }

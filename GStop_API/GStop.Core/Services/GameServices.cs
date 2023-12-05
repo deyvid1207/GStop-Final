@@ -15,6 +15,7 @@ using GStop_API.Data.Models.Games;
 namespace GStop.Core.Services
 {
     public class GameServices : IGameServices
+
     {
         private readonly GStopDbContext _dbContext;
  
@@ -192,5 +193,27 @@ namespace GStop.Core.Services
 
         }
 
+        public async Task<bool> AddComment(Game game, Comment comment, string username)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            if (user == null || game == null || comment == null)
+            {
+                return false;
+
+            }
+            else
+            {
+
+                await _dbContext.Comments.AddAsync(comment);
+                game.Comments.Add(comment);
+            }
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<List<Comment>> GetComments(Game game)
+        {
+         return   await _dbContext.Comments.Where(x => x.Game == game).ToListAsync();
+        }
     }
 }
