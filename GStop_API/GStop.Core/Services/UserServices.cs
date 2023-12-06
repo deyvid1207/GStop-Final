@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using GStop_API.Data;
 using GStop_API.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using GStop.Core.Services.Contacts;
 using System.Net.Http;
+using GStop.Core.Services.Contacts;
 
 namespace GStop_API.Services
 {

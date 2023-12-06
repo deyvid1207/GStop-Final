@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wvIgM9zG8JXqEKhysx9q8PLscyoYzCEoIYoLj2Q6TGaNwHM8lIe9d52N5H71SOuJGa64bsdPJgsUwSU2Urx66A==",
+  "dgSpecHash": "mkq9TCSkTb+NpM7+XkcxaY0vv/6pac2IbGaEB7PCFX5svkJJGLDIsxxuP+tIq2qLhiJhFZ8UAoDIYN+arQshcw==",
   "success": true,
-  "projectFilePath": "D:\\ReactJS\\GStop-v.4\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
+  "projectFilePath": "D:\\Projects\\GSTOP\\GStop.V1.5\\GStop-Final\\GStop_API\\GStop.Common\\GStop.Common.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

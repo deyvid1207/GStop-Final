@@ -16,6 +16,13 @@
     align-content: center;
     flex: 1
 }
+.comment-form {
+    display: flex;
+    flex-direction: row;
+     
+    align-content: center;
+    justify-content: center;
+}
 .d-game-title {
     color: azure;
     text-align: center;
@@ -65,6 +72,45 @@
     gap: 3em;
  
     align-content: center;
+}
+.comment-row {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2em;
+}
+.comment-col {
+    display: flex;
+    gap: 1px;
+    flex-direction: column;
+}
+.commentButton {
+    height: 2em;
+    margin-top: 3.75em;
+}
+.comment-user, .Content, .Time {
+    height: 0em;
+}
+
+.comment-bar {
+    width: 20em;
+    height: 3em;
+    margin: 2em;
+    margin-right: -1em;
+    border: 3px gray solid;
+    border-radius: 3em;
+    text-align: center;
+}
+.comment-Button {
+    margin: 2em;
+    border-radius: 2em;
+}
+.commentButton {
+     margin-left: 2em;
+}
+.comment-Button:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+    background-color: gainsboro;
 }
 .d-game-button {
     margin-top: 1.7em ;

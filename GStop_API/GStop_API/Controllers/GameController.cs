@@ -1,5 +1,4 @@
-﻿using GStop.Core.Services;
-using GStop.Core.Services.Contacts;
+﻿using GStop.Core.Services.Contacts;
 using GStop.DTOs.DTOs.GameDTOs;
 using GStop_API.Data.Models;
 using GStop_API.Data.Models.Games;
@@ -144,7 +143,7 @@ namespace GStop_API.Controllers
                 PublisherId = user.Id,
                 Game = game,
                 GameId = game.Id,
-            }
+            };
             if (await _gameServices.AddComment(game, Comment, userComment.Username))
             {
 
@@ -154,17 +153,32 @@ namespace GStop_API.Controllers
 
 
         }
-        [HttpGet("get-comments/{id}")]
-        public async Task<IActionResult> GetComments(int id)
-        {
-
+        [HttpGet("get-comments")]
+        public async Task<IActionResult> GetComments(int id, int currentPage)
+        { 
             var game = await _gameServices.FindGameAsync(id);
-             
-            var games = await _gameServices.GetComments(game);
+    
+            var games = await _gameServices.GetComments(game, currentPage);
                 return Ok(games);
   
 
 
         }
-    }
+      
+        [HttpPost("remove-comment")]
+    public async Task<IActionResult> RemoveComment(int id, int commentId)
+    {
+            var game = await _gameServices.FindGameAsync(id);
+
+            if (await _gameServices.RemoveComment(game, commentId)) 
+            {
+
+                return StatusCode(201);
+            }
+            return BadRequest();
+
+
+
+        }
+}
 }

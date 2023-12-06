@@ -11,6 +11,9 @@ using GStop.Core.Services.Contacts;
 using System.Security.Cryptography.X509Certificates;
 using GStop_API.DTOs.GameDTOs;
 using GStop_API.Data.Models.Games;
+using GStop.DTOs.DTOs.GameDTOs;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 
 namespace GStop.Core.Services
 {
@@ -211,9 +214,42 @@ namespace GStop.Core.Services
             return true;
         }
 
-        public async Task<List<Comment>> GetComments(Game game)
+        public async Task<GameComments> GetComments(Game game, int curpage)
         {
-         return   await _dbContext.Comments.Where(x => x.Game == game).ToListAsync();
+            var comments = await _dbContext.Comments.ToListAsync();
+            var gameCommentsDto = new GameComments
+            {
+
+                GameId = game.Id,
+                Pages =  (int)Math.Ceiling((decimal)comments.Count / 7),
+                Page = curpage,
+                comments = await _dbContext.Comments.Where(x => x.Game == game).Skip((curpage - 1) * 7).Take(7).Select(x => new UserCommentDTO
+                {
+                    Id = x.Id,
+                    Content = x.Content,
+                    Username = x.Publisher.UserName,
+                    PublishedOn = x.PublishedOn,
+
+                }).ToListAsync()
+               
+            };
+            return gameCommentsDto;
+          
+        }
+
+        public async Task<bool> RemoveComment(Game game, int commentId)
+        {
+            var Comment = game.Comments.FirstOrDefault(x => x.Id == commentId);
+            if (Comment == null)
+            {
+                return false;
+            }
+          
+            game.Comments.Remove(Comment);
+            _dbContext.Comments.Remove(Comment);
+            await _dbContext.SaveChangesAsync();
+            return true; 
+            
         }
     }
 }

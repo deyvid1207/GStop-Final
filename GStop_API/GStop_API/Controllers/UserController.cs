@@ -7,7 +7,6 @@ using System.Security.Claims;
 using GStop_API.Services;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using GStop_API.DTOs.UserDTOs;
-using GStop.Core.Services.Contacts;
 using Microsoft.AspNetCore.Cors;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration;
 using GStop_API.Common;
 using Azure;
+using GStop.Core.Services.Contacts;
 
 namespace GStop_API.Controllers
 {
@@ -129,11 +129,7 @@ namespace GStop_API.Controllers
         }
 
 
-        private IActionResult HandleErrors(IdentityResult result)
-        {
-            var errors = result.Errors.Select(e => e.Description);
-            return BadRequest(new { Errors = errors });
-        }
+       
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var validIssuer = _configuration["JWT:ValidIssuer"];

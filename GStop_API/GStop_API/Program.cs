@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
- 
+
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;

@@ -1,4 +1,5 @@
-﻿using GStop_API.Data.Models;
+﻿using GStop.DTOs.DTOs.GameDTOs;
+using GStop_API.Data.Models;
 using GStop_API.DTOs.GameDTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,7 +26,8 @@ namespace GStop.Core.Services.Contacts
 
         public List<Game> SearchAsync(string input);
         public Task<bool> AddComment(Game game, Comment comment, string username);
-        public Task<List<Comment>> GetComments(Game game);
+        public Task<GameComments> GetComments(Game game, int curpage);
+        public Task<bool> RemoveComment(Game game, int commentId);
 
 
     }

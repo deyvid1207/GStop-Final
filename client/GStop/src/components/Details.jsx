@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API_URL from "../API_URL";
 import './styles/Details.css'
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthenticationCheck";
  
 function Details() {
@@ -10,13 +10,16 @@ function Details() {
   const [money, setMoney] = useState(0); 
   const [comments, setcomments] = useState([]); 
   const [comment, setComment] = useState(""); 
+  const [currentpage, setCurrentPage] = useState(1); 
   const navigate = useNavigate()
   const handlecomment = (e) => {
     setComment(e.target.value);
   };
   useEffect(() => {
     async function fetchGame() {
+
        setUser(JSON.parse(localStorage.getItem('currentUser')))
+       console.log(user)
       try {
         const response = await fetch(
           `${API_URL}/api/game/GetGame/${localStorage.getItem("game-id")}`,
@@ -28,8 +31,12 @@ function Details() {
             },
           }
         );
+        if(currentpage < 0) {
+          setCurrentPage(1);
+        }
+        
         const commentsrs = await fetch(
-          `${API_URL}/api/game/get-comments/${localStorage.getItem("game-id")}`,
+          `${API_URL}/api/game/get-comments?id=${localStorage.getItem("game-id")}&currentPage=${currentpage}`,
           {
             method: "GET",
             headers: {
@@ -46,6 +53,9 @@ function Details() {
         const commentData = await commentsrs.json();
         setGame(data);
         setcomments(commentData);
+        if(currentpage > comments.Pages) {
+          setCurrentPage(currentpage - 1)
+        }
         console.log(comments);
       } catch (error) {
         console.error("Error fetching game:", error);
@@ -94,6 +104,7 @@ function Details() {
     window.location.reload();
    }
    async function addComment() {
+    if(comment !== "") {  
     try {
       const response = await fetch(`${API_URL}/api/game/comment-game/${localStorage.getItem("game-id")}`, {
         method: "POST",
@@ -114,13 +125,14 @@ function Details() {
   
       const responseData = await response.json();
       console.log(responseData);
-  
+      window.location.reload();
       // Optionally, you can update the comments state with the new comment
       setcomments((prevComments) => [...prevComments, responseData]);
   
     } catch (error) {
       console.error("Error adding comment:", error);
     }
+  }
   }
   
 
@@ -171,18 +183,45 @@ function Details() {
           <div className="comment-div">
             <div className="comment-data-div"> 
             <h2 className="comment-Title">Comments:</h2>
-                 {comments.map((com) => (
-             <p>{com.Content}</p>
-                   
+                 {comments.comments.map((com) => (
+                  <div className="comment-row">
+                    <div className="comment-col">
+                      <h3 className="comment-user">{com.Username}</h3>
+             <p className="Content">{com.Content}</p>
+             <p className="Time">{com.PublishedOn .slice(11).slice(0,8)}</p>
+             </div>
+             {com.Username === user.UserName || JSON.parse(localStorage.getItem("UserRole")) === "Admin"? (
+            
+              <button className="commentButton" onClick={async () => {
+                 const remove = await fetch(`${API_URL}/api/game/remove-comment?id=${game.Id}&commentId=${com.Id}`, {
+                 method: "POST",
+                 headers: {
+                   Accept: "application/json",
+                   "Content-type": "application/json",
+                 }});
+                 if(remove.ok) {
+                  window.location.reload();
+                 }
+               
+
+              }}> Delete Comment</button>
+             ): <></>} 
+                   </div>
                  ))}
                     
                  </div>
+               
+                 <form className="comment-form" onSubmit={addComment}> 
                  <div className="comment-form"> 
-                 <form onSubmit={addComment}> 
                  <input className="comment-bar" type="text" onChange={handlecomment} value={comment} placeholder="Comment..." /> 
                  <button type="submit" className="comment-Button">Add Comment</button>
-                 </form>
                  </div>
+                 </form>
+                 <div className="Pages">
+                  <button onClick={setCurrentPage(currentpage - 1)}> &#8592;</button>
+                  <button onClick={setCurrentPage(currentpage + 1)}> &#8594;</button>
+                 </div>
+               
           </div>
         </div>
       </div>
