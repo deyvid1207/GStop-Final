@@ -159,12 +159,22 @@ namespace GStop_API.Controllers
             var game = await _gameServices.FindGameAsync(id);
     
             var games = await _gameServices.GetComments(game, currentPage);
-                return Ok(games);
+                return Ok(games); 
   
 
 
         }
-      
+        [HttpGet("get-all-comments")]
+        public async Task<IActionResult> GetAllComments(int id)
+        {
+            var game = await _gameServices.FindGameAsync(id);
+
+            var games = await _gameServices.GetAllComments(game);
+            return Ok(games);
+
+
+
+        }
         [HttpPost("remove-comment")]
     public async Task<IActionResult> RemoveComment(int id, int commentId)
     {

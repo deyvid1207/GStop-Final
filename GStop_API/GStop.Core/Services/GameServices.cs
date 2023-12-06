@@ -19,6 +19,7 @@ namespace GStop.Core.Services
 {
     public class GameServices : IGameServices
 
+
     {
         private readonly GStopDbContext _dbContext;
  
@@ -221,9 +222,9 @@ namespace GStop.Core.Services
             {
 
                 GameId = game.Id,
-                Pages =  (int)Math.Ceiling((decimal)comments.Count / 7),
+                Pages =  (int)Math.Ceiling((decimal)comments.Count / 5),
                 Page = curpage,
-                comments = await _dbContext.Comments.Where(x => x.Game == game).Skip((curpage - 1) * 7).Take(7).Select(x => new UserCommentDTO
+                comments = await _dbContext.Comments.Where(x => x.Game == game).Skip((curpage - 1) * 5).Take(5).Select(x => new UserCommentDTO
                 {
                     Id = x.Id,
                     Content = x.Content,
@@ -250,6 +251,22 @@ namespace GStop.Core.Services
             await _dbContext.SaveChangesAsync();
             return true; 
             
+        }
+
+        public async Task<GameComments> GetAllComments(Game game)
+        {
+
+            var comments = await _dbContext.Comments.ToListAsync();
+            return new GameComments()
+            {
+                comments = comments.Select(x => new UserCommentDTO()
+                {
+                    Id = x.Id,
+                    Content = x.Content,
+                    Username = x.Publisher.UserName,
+                    PublishedOn = x.PublishedOn,
+                }).ToList(),
+            };
         }
     }
 }

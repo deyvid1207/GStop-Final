@@ -27,8 +27,9 @@ namespace GStop.Core.Services.Contacts
         public List<Game> SearchAsync(string input);
         public Task<bool> AddComment(Game game, Comment comment, string username);
         public Task<GameComments> GetComments(Game game, int curpage);
+        public Task<GameComments> GetAllComments(Game game);
         public Task<bool> RemoveComment(Game game, int commentId);
-
+         
 
     }
 }

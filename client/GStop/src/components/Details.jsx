@@ -8,9 +8,11 @@ function Details() {
   const [game, setGame] = useState();
   const [user, setUser] = useState();
   const [money, setMoney] = useState(0); 
-  const [comments, setcomments] = useState([]); 
+  const [currentPage, setCurrent] = useState(1); 
+  const [commentsperPage, setcomments] = useState([]); 
+  const [allcomments, setAllComments] = useState([]); 
   const [comment, setComment] = useState(""); 
-  const [currentpage, setCurrentPage] = useState(1); 
+ 
   const navigate = useNavigate()
   const handlecomment = (e) => {
     setComment(e.target.value);
@@ -31,12 +33,10 @@ function Details() {
             },
           }
         );
-        if(currentpage < 0) {
-          setCurrentPage(1);
-        }
-        
+     
+       
         const commentsrs = await fetch(
-          `${API_URL}/api/game/get-comments?id=${localStorage.getItem("game-id")}&currentPage=${currentpage}`,
+          `${API_URL}/api/game/get-comments?id=${localStorage.getItem("game-id")}&currentPage=${currentPage}`,
           {
             method: "GET",
             headers: {
@@ -48,22 +48,31 @@ function Details() {
         if (!response.ok) {
           throw new Error("Failed to fetch game");
         }
-
+        const commentsall = await fetch(
+          `${API_URL}/api/game/get-all-comments?id=${localStorage.getItem("game-id")}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-type": "application/json",
+            },
+          }
+        );
         const data = await response.json();
         const commentData = await commentsrs.json();
+        const AllcommentData = await commentsall.json();
+        setAllComments(AllcommentData);
         setGame(data);
         setcomments(commentData);
-        if(currentpage > comments.Pages) {
-          setCurrentPage(currentpage - 1)
-        }
-        console.log(comments);
+       
+        console.log(commentsperPage);
       } catch (error) {
         console.error("Error fetching game:", error);
       }
     }
 
     fetchGame();
-  }, []);
+  }, [currentPage]);
 
   
    async function BuyGame() {
@@ -183,7 +192,7 @@ function Details() {
           <div className="comment-div">
             <div className="comment-data-div"> 
             <h2 className="comment-Title">Comments:</h2>
-                 {comments.comments.map((com) => (
+                 {commentsperPage.comments.map((com) => (
                   <div className="comment-row">
                     <div className="comment-col">
                       <h3 className="comment-user">{com.Username}</h3>
@@ -218,8 +227,30 @@ function Details() {
                  </div>
                  </form>
                  <div className="Pages">
-                  <button onClick={setCurrentPage(currentpage - 1)}> &#8592;</button>
-                  <button onClick={setCurrentPage(currentpage + 1)}> &#8594;</button>
+                 <p>Page: {currentPage} out of {commentsperPage.Pages}</p>
+                 <p>Total Comments: {allcomments.comments.length}</p>
+                  <button onClick={() => {
+                    var newPage = currentPage - 1;
+                    if(newPage <= 0) {
+                      newPage = 1;
+
+                    }
+                    setCurrent(newPage)
+                     
+                  }} > &#8592;</button>
+                
+                  <button  onClick={() => {
+                    var newPage = currentPage + 1;
+                    console.log(newPage)
+                 
+                    if(newPage > commentsperPage.Pages) {
+                      console.log("here")
+                      newPage = commentsperPage.Pages ;
+
+                    }
+                    setCurrent(newPage)
+                      
+                  }} > &#8594;</button>
                  </div>
                
           </div>
