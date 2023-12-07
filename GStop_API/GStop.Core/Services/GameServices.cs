@@ -34,6 +34,24 @@ namespace GStop.Core.Services
 
             return games;
         }
+        public async Task<List<Game>> GetAllGamesByCount()
+        {
+            List<Game> games = await _dbContext.Games.OrderByDescending(x => x.Count).ToListAsync();
+
+            return games;
+        }
+        public async Task<List<Game>> GetAllGamesByPrice()
+        {
+            List<Game> games = await _dbContext.Games.OrderByDescending(x => x.Price).ToListAsync();
+
+            return games;
+        }
+        public async Task<List<Game>> GetAllGamesByLikes()
+        {
+            List<Game> games = await _dbContext.Games.OrderByDescending(x => x.Likes.Count).ToListAsync();
+
+            return games;
+        }
         public async Task CreateGameAsync(Game model)
         {
             var gm = await _dbContext.Games.Include(x => x.Likes).Include(x => x.Comments).ThenInclude(x => x.Publisher).FirstOrDefaultAsync(x => x.Name == model.Name);
@@ -74,14 +92,9 @@ namespace GStop.Core.Services
         public async Task DeleteGameAsync(int id)
         {
             var game = await FindGameAsync(id);
-            if (game.Count == 1)
-            {
+          
                  _dbContext.Remove(game);
-            }
-            else
-            {
-                game.Count--;
-            }
+           
             await _dbContext.SaveChangesAsync();
         }
         public async Task<Game> FindGameAsync(int id)

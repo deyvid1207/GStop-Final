@@ -1,0 +1,24 @@
+.add-pg {
+    background-color: #504099;
+}
+.label1 {
+    color:white;
+    font-size: 2em;
+}
+ 
+.Title-e {
+    text-align: center;
+    padding-top: 2em;
+    margin-left: 2.2em;
+    color:azure;
+    position: relative;
+    margin: auto;
+ 
+    font-size: 2rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+ 
+    letter-spacing: 2px;
+}

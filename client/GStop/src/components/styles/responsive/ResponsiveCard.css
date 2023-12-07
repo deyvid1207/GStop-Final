@@ -1,0 +1,7 @@
+@media (width <= 600px) { 
+.card, .card-disabled {
+    width: 90%;
+    margin-right: 4em;
+}
+
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API_URL from "../../utils/API_URL";
 import { useAuth } from "../../utils/AuthenticationCheck";
+import '../styles/AddGame.css'
  
  
 function AddGame() {
@@ -52,6 +53,7 @@ function AddGame() {
         navigate("/shop")
       }
     return <>
+    <div className="add-pg"> 
        <form onSubmit={createGame}>
         <div className="form-div">
           <label className="label1">Game Title</label>
@@ -68,6 +70,7 @@ function AddGame() {
         </div>
         
       </form>
+      </div>
     </>
 
 }

@@ -1,5 +1,5 @@
 @media (width <= 600px) {
-     .Title{
+     .Title, .Title-If{
         display: none;
      }
      

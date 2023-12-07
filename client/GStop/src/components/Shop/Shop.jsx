@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API_URL from "../../utils/API_URL";
 import { useNavigate } from "react-router-dom";
 import '../styles/Shop.css';
+import '../styles/responsive/ResponsiveShop.css';
 import Card from "../Game/Card";
 
 function Shop() {
@@ -9,13 +10,17 @@ function Shop() {
   const [games, setGames] = useState([]);
   const [game, setRandomGame] = useState([]);
   const [search, setSearch] = useState('');
+  const [sortCriteria, setSortCriteria] = useState('Count');
   const [price, setPrice] = useState(0);
   const [length, setLength] = useState(0);
   const handleSearch = (e) => {
     setSearch(e.target.value);
-   
+      console.log(sortCriteria)
   } ;
-  
+  const handleSortChange = (e) => {
+    console.log(e.target.value)
+    setSortCriteria(e.target.value);
+  };
   console.log(search);
   useEffect(() => {
     const fetchData = async () => {
@@ -35,10 +40,17 @@ function Shop() {
       if  (search === '' ) { 
       try {
         // Replace the URL with the actual endpoint for your games
-        const response = await fetch(`${API_URL}/api/game/GetAllGames`);
+        let response;
+        // Replace the URL with the actual endpoint for your games
+        if (sortCriteria === 'Likes') {
+          response = await fetch(`${API_URL}/api/game/GetAllGamesSortedByLikes`);
+        } else {
+          response = await fetch(`${API_URL}/api/game/GetAllGamesSortedBy${sortCriteria}`);
+        }
         const data = await response.json();
-        setLength(data.length);
         console.log(data);
+        setLength(data.length);
+     
         setGames(data);
   
         const availableGames = data.filter(game => game.Count > 0);
@@ -77,7 +89,7 @@ function Shop() {
     };
   
     fetchData();
-  }, [search]);
+  }, [search, sortCriteria]);
     function getDetails(id) {
        localStorage.setItem('game-id', id)
      
@@ -109,7 +121,16 @@ function Shop() {
         <form> 
           <input className="searchBar" onChange={handleSearch} type="text" value={search} placeholder="Search..." /> 
           </form>
-        </div>  
+          <div className="sort-dropdown">
+        <label htmlFor="sort">Sort by:</label>
+        <select id="sort" value={sortCriteria} onChange={handleSortChange}>
+          <option value="Count">Count</option>
+          <option value="Price">Price</option>
+          <option value="Likes">Likes</option>
+        </select>
+      </div>
+        </div> 
+      
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" className="icon"fill="#000000" height="2em" width="3em" version="1.1" id="Capa_1" viewBox="0 0 488.4 488.4" xml:space="preserve">
 <g>
 	<g>

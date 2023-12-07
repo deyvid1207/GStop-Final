@@ -51,14 +51,34 @@ namespace GStop_API.Controllers
     
         //Read
 
-        [HttpGet("GetAllGames")]
+        [HttpGet("GetAllGamesSortedByLikes")]
 
         public async Task<IActionResult> GetAllGames()
         {
 
-            List<Game> games = await _gameServices.GetAllGames();
+            List<Game> games = await _gameServices.GetAllGamesByLikes();
             return Ok(games);
            
+
+        }
+        [HttpGet("GetAllGamesSortedByPrice")]
+
+        public async Task<IActionResult> GetAllGamesPrice()
+        {
+
+            List<Game> games = await _gameServices.GetAllGamesByPrice();
+            return Ok(games);
+
+
+        }
+        [HttpGet("GetAllGamesSortedByCount")]
+
+        public async Task<IActionResult> GetAllGamesCount()
+        {
+
+            List<Game> games = await _gameServices.GetAllGamesByCount();
+            return Ok(games);
+
 
         }
         [HttpGet("searchGame/{input}")]

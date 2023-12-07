@@ -30,6 +30,12 @@ body {
 }
 .last {
     margin-right: 2em;
+     
+}
+.logout {
+    background-color: #313866;
+    border: 0;
+    font-size: 19px;
 }
 .right {
  margin-left: auto;

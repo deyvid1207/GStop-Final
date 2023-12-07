@@ -7,7 +7,7 @@ import Shop from './Shop/Shop.jsx';
 import AddGame from './Admin/AddGame.jsx';
 import Details from './Game/Details.jsx';
 import Edit from './Admin/Edit.jsx';
-import Delete from './Admin/Deleted.jsx';
+ 
  
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
           <Route exact path="/addGame"element={<AddGame/>}></Route>
           <Route exact path="/details"element={<Details/>}></Route>
           <Route exact path="/edit"element={<Edit/>}></Route>
-          <Route exact path="/deleteConfirm"element={<Delete/>}></Route>          
+                 
            <Route exact path="/login"element={<Login/>}></Route>
  
        </Routes>

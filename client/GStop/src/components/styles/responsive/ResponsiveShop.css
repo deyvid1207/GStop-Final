@@ -1,0 +1,38 @@
+@media (width <= 600px) {
+.game-of-the-week {
+    display: none;
+}
+.searchBar {
+ 
+    padding: 1em;
+   width: 22em;
+    border: none;
+    border-radius: 2em;
+    text-align: left;
+  }
+  .icon{
+    margin-left: 20.5em;
+    width: 23px;
+    margin-top: -2.3em;
+  
+   
+    
+ }
+ .no-game {
+    margin-left: -1em;
+    display: flex;
+    flex-direction: column;
+}
+ .image {
+    border: 11px violet solid;
+    border-radius: 5em;
+    width: 538px;
+}
+ .games {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    gap: 0.2em;
+}
+}

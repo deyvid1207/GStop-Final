@@ -10,8 +10,9 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
 }
 .games {
     display: flex;
-   
+   flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
     gap:0.2em
 }
 .game-head-div {
@@ -43,10 +44,11 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
     border-radius: 2em;
 }
 .no-game {
-    margin-left: 31.4em;
+    margin-right: 2.7em;
     display: flex;
     flex-direction: column;
 }
+
 .ng-Title {
     color:white;
     font-size: 3em;
@@ -90,8 +92,9 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
    text-align: left;
  }
  .icon{
-    margin-left: 81em;
-    margin-top: -2.25em;
+    margin-left: 76.5em;
+    margin-top: -2.3em;
+  
    
     
  }
@@ -104,6 +107,25 @@ background-image:url('https://www.freeiconspng.com/thumbs/no-image-icon/no-image
     font-weight: 700;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+  
+    margin-left: 2em;
+    
+  }
+  
+  label {
+    margin-right: 0.5em;
+    color: white;
+  }
+  
+  select {
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em;
+  }
+  
 .game-dets {
     padding: 1em;
     padding-left: 8em;

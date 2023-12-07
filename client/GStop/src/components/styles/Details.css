@@ -77,6 +77,11 @@
     display: flex;
     flex-direction: row;
     margin-left: 2em;
+    border-top: gray 1px solid;
+    margin-right: 2em;
+    padding-bottom: 1em;
+    border-bottom: gray 1px solid;
+
 }
 .comment-col {
     display: flex;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import API_URL from "../../utils/API_URL";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../utils/AuthenticationCheck";
+import '../styles/AddGame.css'
  function Edit() {
     useAuth();  
     const location = useLocation();
@@ -55,7 +56,11 @@ console.log(location)
   }
   
     return <>   
+   
+    <div className="add-pg"> 
+    <h1 className="Title-e">Edit Game</h1>
     <form onSubmit={editGame}> 
+    <div className="form-div">
       <label  className="label1">Game Title</label>
     <input placeholder="Game Title" onChange={handleName}  className="input" value={name} type="text" />
 
@@ -67,7 +72,9 @@ console.log(location)
     <label className="label">Price</label>
     <input placeholder="Price" onChange={handlePrice}    type="number"  value={Price} />
     <button type="submit" className="createButton">Create</button>
+   </div>
     </form>
+    </div>
     </>
 }
 export default  Edit;

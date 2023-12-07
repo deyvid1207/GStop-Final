@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API_URL from "../../utils/API_URL";
 import '../styles/Details.css'
+import '../styles/responsive/ResponsiveDetails.css'
 import { json, useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthenticationCheck";
  import Comment from "./Comment";
@@ -8,7 +9,8 @@ function Details() {
   const [game, setGame] = useState();
   const [user, setUser] = useState();
   const [money, setMoney] = useState(0); 
-  const [likes, setLikes] = useState(); 
+  const [likes, setLikes] = useState(game && game.Likes ? game.Likes.length : 0);
+
   const [currentPage, setCurrent] = useState(1); 
   const [commentsperPage, setcomments] = useState([]); 
   const [allcomments, setAllComments] = useState([]); 
@@ -70,8 +72,8 @@ function Details() {
       }
       setGame(data);
       console.log(game)
-      setLikes(game.Likes.length)
-        console.log(commentsperPage);
+      setLikes(data.Likes.length);
+        console.log(likes);
       } catch (error) {
         console.error("Error fetching game:", error);
       }
@@ -91,7 +93,10 @@ function Details() {
       },
       body: JSON.stringify(user.UserName),
     });
+    
     if(response.ok) {
+      console.log(user.Money);
+      console.log('bought!');
     const newMoney = user.Money - game.Price;
     setMoney(newMoney);
 
@@ -105,8 +110,13 @@ function Details() {
   else{
     alert(`You don't have enough money to purchase ${game.Name}`)
   } }
-
-   async function LikeGame() {
+  
+  const handleDeleteComment = async (commentId) => {
+    // Update comments based on your logic
+    const updatedComments = commentsperPage.comments.filter((comment) => comment.Id !== commentId);
+    setcomments({ ...commentsperPage, comments: updatedComments });
+  };
+  async function LikeGame() {
     const response = await fetch(`${API_URL}/api/game/LikeGame/${game.Id}`, {
       method: 'POST',
       headers: {
@@ -115,9 +125,26 @@ function Details() {
       },
       body: JSON.stringify(user.UserName),
     });
-   
-   
-   }
+  
+    // Update likes based on the previous state
+    const updatedGameResponse = await fetch(
+      `${API_URL}/api/game/GetGame/${localStorage.getItem("game-id")}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+        },
+      }
+    );
+  
+    if (response.ok && updatedGameResponse.ok) {
+      // Update likes based on the latest value of game.Likes.length
+      const updatedGameData = await updatedGameResponse.json();
+      setLikes(updatedGameData.Likes.length);
+    }
+  }
+  
    async function addComment() {
     if(comment !== "") {  
     try {
@@ -201,7 +228,7 @@ function Details() {
             <div className="comment-data-div"> 
             <h2 className="comment-Title">Comments:</h2>
                  {commentsperPage.comments.map((com) => (
-                   <Comment key={com.Id} {...com}></Comment>
+                       <Comment key={com.Id} onDeleteComment={handleDeleteComment} {...com} />
                  ))}
                     
                  </div>
@@ -234,7 +261,7 @@ function Details() {
                       newPage = commentsperPage.Pages ;
                     
                       if(commentsperPage.Pages === 0) {
-  newPage = 1;
+                     newPage = 1;
                       }
                       
 

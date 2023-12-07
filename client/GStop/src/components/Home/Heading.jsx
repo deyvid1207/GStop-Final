@@ -71,7 +71,7 @@ function Heading() {
                 <h3 className="Title-If"><NavLink to="/">GStop</NavLink></h3>
                 <li className="right"   onClick={() => addMoney(storedUser, setMoney)}>{money.toFixed(2)}$</li>
                 <li><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
-                <li className="last"><button onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>
+                <li className="last"><button className='logout' onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>
               </>
             ) : (
               <>

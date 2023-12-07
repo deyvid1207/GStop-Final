@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/Card.css'
 import '../styles/Popup.css'
+import '../styles/responsive/ResponsiveCard.css'
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import API_URL from '../../utils/API_URL';
@@ -34,7 +35,7 @@ const [count, setCount] = useState(game.Count ? game.Count : 0);
  <img className="card-img-top" src={game.ImgURL}/>
  <div className="card-body">
  {game.Count > 0 ? (
-          <p className='stock'><small> In Stock: {game.Count}</small></p>
+          <p className='stock'><small> In Stock: {count}</small></p>
      ) : ( <p className='out-stock'> <small>Out of Stock </small></p>)}
   
      <p className='game-title-card'>{game.Name}</p>
@@ -54,7 +55,8 @@ const [count, setCount] = useState(game.Count ? game.Count : 0);
                 'Content-type': 'application/json'
               }
              })
-             window.location.reload()
+             setCount(count + 1)
+             
             }}
  
 className='butplus'>+</button>  
@@ -115,7 +117,7 @@ navigate("/deleteConfirm")
                 'Content-type': 'application/json'
               }
              })}
->Add {game.Name}</button>
+>+</button>
             <Popup  trigger= {<button>Delete</button>} position='top right'> 
             {close => ( 
                  <div className="popUp">
@@ -129,7 +131,7 @@ const deleteGame = await fetch(`${API_URL}/api/game/DeleteGame/${game.Id}`, {
    'Content-type': 'application/json'
  }
 }) 
-navigate("/deleteConfirm")
+ 
 
 
                    }}>Yes</button>

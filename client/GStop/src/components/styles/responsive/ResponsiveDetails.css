@@ -1,0 +1,28 @@
+@media (width <= 600px) {
+    
+    .details-pg {
+        background-color: blueviolet;
+   
+        display: flex;
+        flex-direction: column;
+      
+    }
+    .d-game-img {
+        border: black 3px solid;
+        width: 28em;
+        height: 26em;
+    } 
+    .right-div {
+        padding-top: 1em;
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+    }
+    .d-game-button-rows {
+
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+       align-items: center;
+    }
+}
