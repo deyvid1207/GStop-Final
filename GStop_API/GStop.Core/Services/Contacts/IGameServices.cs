@@ -15,7 +15,7 @@ namespace GStop.Core.Services.Contacts
         public  Task CreateGameAsync(Game model);
         public  Task DeleteGameAsync(int id);
         public  Task EditGameAsync(Game game, UpdateGameDTO updateGameDTO);
-
+        public Task AddGame(Game model);
         public Task<List<Game>> GetAllGames();
 
         public  Task<Game> FindGameAsync(int id);

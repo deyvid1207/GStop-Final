@@ -1,13 +1,13 @@
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Heading from './Heading';
-import Login from './Login';
-import Register from './Register';
-import Shop from './Shop';
-import AddGame from './AddGame';
-import Details from './Details';
-import Edit from './Edit';
-import Delete from './Deleted';
+import Home from './Home/Home.jsx';
+import Heading from './Home/Heading.jsx';
+import Login from './User/Login.jsx';
+import Register from './User/Register.jsx';
+import Shop from './Shop/Shop.jsx';
+import AddGame from './Admin/AddGame.jsx';
+import Details from './Game/Details.jsx';
+import Edit from './Admin/Edit.jsx';
+import Delete from './Admin/Deleted.jsx';
  
 
 const App = () => {

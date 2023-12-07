@@ -1,5 +1,5 @@
-import './styles/Home.css'
-import './styles/responsive/ResponsiveHome.css'
+import '../styles/Home.css'
+import '../styles/responsive/ResponsiveHome.css'
 import { useState, useEffect } from 'react';
 function Home() {
  

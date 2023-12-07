@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import API_URL from "../API_URL";
+import API_URL from "../../utils/API_URL";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../AuthenticationCheck";
+import { useAuth } from "../../utils/AuthenticationCheck";
  function Edit() {
     useAuth();  
     const location = useLocation();

@@ -122,6 +122,17 @@
     height: 5em;
     width: 16em;
 }
+d-game-button-dis {
+    margin-top: 1.7em ;
+    border: violet 5px solid;
+    border-radius: 4em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 5em;
+    width: 16em;
+    disabled: true
+}
 .d-game-button:hover {
     cursor: pointer;
     transform: scale(1.10); 

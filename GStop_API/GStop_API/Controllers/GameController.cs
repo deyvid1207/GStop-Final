@@ -13,13 +13,13 @@ namespace GStop_API.Controllers
     [Route("api/game")]
     public class GameController : Controller
     {
-       private IGameServices _gameServices { get; set; }
-       private IUserServices _userServices { get; set; }
-        public GameController(IGameServices gameServices, IUserServices userServices) 
-        { 
-          this._gameServices = gameServices;
+        private IGameServices _gameServices { get; set; }
+        private IUserServices _userServices { get; set; }
+        public GameController(IGameServices gameServices, IUserServices userServices)
+        {
+            this._gameServices = gameServices;
             this._userServices = userServices;
-        
+
         }
         //Create 
         [HttpPost("CreateGame")]
@@ -35,12 +35,20 @@ namespace GStop_API.Controllers
                 ImgURL = gameCreateDTO.ImgURL,
                 Price = gameCreateDTO.Price,
                 PublishedOn = gameCreateDTO.PublishedOn
-                
+
             };
             await _gameServices.CreateGameAsync(game);
             return Ok(game);
 
         }
+        [HttpPost("add-game")]
+        public async Task<IActionResult> AddGame(int id)
+        {
+            var game = await _gameServices.FindGameAsync(id);
+            await _gameServices.AddGame(game);
+            return Ok();
+        }
+    
         //Read
 
         [HttpGet("GetAllGames")]
@@ -170,6 +178,10 @@ namespace GStop_API.Controllers
             var game = await _gameServices.FindGameAsync(id);
 
             var games = await _gameServices.GetAllComments(game);
+            if(games == null)
+            {
+                return Ok();
+            }
             return Ok(games);
 
 

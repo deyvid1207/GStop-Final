@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import API_URL from "../API_URL";
-import './styles/Details.css'
+import API_URL from "../../utils/API_URL";
+import '../styles/Details.css'
 import { json, useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthenticationCheck";
- 
+import { useAuth } from "../../utils/AuthenticationCheck";
+ import Comment from "./Comment";
 function Details() {
   const [game, setGame] = useState();
   const [user, setUser] = useState();
   const [money, setMoney] = useState(0); 
+  const [likes, setLikes] = useState(); 
   const [currentPage, setCurrent] = useState(1); 
   const [commentsperPage, setcomments] = useState([]); 
   const [allcomments, setAllComments] = useState([]); 
@@ -59,12 +60,17 @@ function Details() {
           }
         );
         const data = await response.json();
+        if(commentsall.ok && commentsrs.ok) { 
         const commentData = await commentsrs.json();
+        console.log(commentData)
         const AllcommentData = await commentsall.json();
         setAllComments(AllcommentData);
-        setGame(data);
+     
         setcomments(commentData);
-       
+      }
+      setGame(data);
+      console.log(game)
+      setLikes(game.Likes.length)
         console.log(commentsperPage);
       } catch (error) {
         console.error("Error fetching game:", error);
@@ -110,7 +116,7 @@ function Details() {
       body: JSON.stringify(user.UserName),
     });
    
-    window.location.reload();
+   
    }
    async function addComment() {
     if(comment !== "") {  
@@ -163,21 +169,23 @@ function Details() {
           <div className="d-game-button-rows">
           {game.Count > 0 ? (
 
-    
+    <> 
 <h2 className="d-game-price">Get now for: {game.Price.toFixed(2)}$</h2>
- 
-          ) : (
-
+    <button className="d-game-button" onClick={BuyGame}><h3>Purchase now</h3></button>)
+    </>   ) : (
+ <> 
             <h2 className="d-game-price">Out of stock</h2>
+            <button className="d-game-button" onClick={BuyGame}disabled>  <h3>Not Available</h3></button>
+            </>
           )}
-         
-          {JSON.parse(localStorage.getItem('UserRole')) !== 'Admin' ? ( 
-            <button className="d-game-button" onClick={BuyGame}><h3>Purchase now</h3></button>) : ( 
+
+            {JSON.parse(localStorage.getItem('UserRole')) === 'Admin' ? ( 
      
-         <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>)
-       
-     
-          }
+              
+ 
+         <button onClick= {() => {navigate(`/edit?id=${game.Id}`,{state:{Id: game.Id, Name: game.Name, ImgURL: game.ImgURL, Description: game.Description, PublishedOn: game.PublishedOn.slice(0, 10), Price: game.Price}})}}className="d-game-button">Edit Game</button>
+   ) : <></>  }
+        
             <button className="like-btn" onClick={LikeGame}> 
             <svg className="likeSVG"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 486.926 486.926" xml:space="preserve">  
 <g>
@@ -187,35 +195,13 @@ function Details() {
 </g>
  
 </svg></button>
-<h2 className="d-game-like">Likes: {game.Likes.length}</h2>
+<h2 className="d-game-like">Likes: {likes}</h2>
           </div>
           <div className="comment-div">
             <div className="comment-data-div"> 
             <h2 className="comment-Title">Comments:</h2>
                  {commentsperPage.comments.map((com) => (
-                  <div className="comment-row">
-                    <div className="comment-col">
-                      <h3 className="comment-user">{com.Username}</h3>
-             <p className="Content">{com.Content}</p>
-             <p className="Time">{com.PublishedOn .slice(11).slice(0,8)}</p>
-             </div>
-             {com.Username === user.UserName || JSON.parse(localStorage.getItem("UserRole")) === "Admin"? (
-            
-              <button className="commentButton" onClick={async () => {
-                 const remove = await fetch(`${API_URL}/api/game/remove-comment?id=${game.Id}&commentId=${com.Id}`, {
-                 method: "POST",
-                 headers: {
-                   Accept: "application/json",
-                   "Content-type": "application/json",
-                 }});
-                 if(remove.ok) {
-                  window.location.reload();
-                 }
-               
-
-              }}> Delete Comment</button>
-             ): <></>} 
-                   </div>
+                   <Comment key={com.Id} {...com}></Comment>
                  ))}
                     
                  </div>
@@ -227,7 +213,7 @@ function Details() {
                  </div>
                  </form>
                  <div className="Pages">
-                 <p>Page: {currentPage} out of {commentsperPage.Pages}</p>
+                 <p>Page: {currentPage} out of {commentsperPage.Pages === 0 ? (<>1</>) : (<>{commentsperPage.Pages}</>)}</p>
                  <p>Total Comments: {allcomments.comments.length}</p>
                   <button onClick={() => {
                     var newPage = currentPage - 1;
@@ -246,6 +232,11 @@ function Details() {
                     if(newPage > commentsperPage.Pages) {
                       console.log("here")
                       newPage = commentsperPage.Pages ;
+                    
+                      if(commentsperPage.Pages === 0) {
+  newPage = 1;
+                      }
+                      
 
                     }
                     setCurrent(newPage)

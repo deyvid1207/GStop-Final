@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import API_URL from "../API_URL";
+import API_URL from "../../utils/API_URL";
 import { useNavigate } from "react-router-dom";
-import './styles/Shop.css';
-import Card from "./Card";
+import '../styles/Shop.css';
+import Card from "../Game/Card";
 
 function Shop() {
   const navigate = useNavigate();

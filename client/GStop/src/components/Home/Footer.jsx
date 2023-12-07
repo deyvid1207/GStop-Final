@@ -1,5 +1,5 @@
-import './styles/Footer.css'
-import './styles/responsive/ResponsiveFooter.css'
+import '../styles/Footer.css'
+import '../styles/responsive/ResponsiveFooter.css'
 function Footer() {
     
   

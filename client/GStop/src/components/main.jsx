@@ -2,11 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
  
-import { UserProvider } from '../UserContext.jsx';
-import Heading from './Heading'
-import Home from './Home'
+import { UserProvider } from '../utils/UserContext.jsx';
+ 
 import App from './App'
-import Footer from './Footer'
+import Footer from './Home/Footer.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  

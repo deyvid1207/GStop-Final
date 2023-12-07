@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import  './styles/Register.css'
-import  './styles/responsive/ResponsiveRegister.css'
-import API_URL from "../API_URL";
+import  '../styles/Register.css'
+import  '../styles/responsive/ResponsiveRegister.css'
+import API_URL from "../../utils/API_URL";
 
 function Register() {
   const navigate = useNavigate();

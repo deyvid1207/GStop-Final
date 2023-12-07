@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as jwt from 'jwt-decode';
-import Logout from '../Logout';
-import API_URL from '../API_URL';
-import './styles/Heading.css';
-import './styles/responsive/ResponsiveHeading.css';
+import Logout from '../../utils/Logout';
+import API_URL from '../../utils/API_URL';
+import '../styles/Heading.css';
+import '../styles/responsive/ResponsiveHeading.css';
 // Define the addMoney function
 async function addMoney(storedUser, setMoney) {
  

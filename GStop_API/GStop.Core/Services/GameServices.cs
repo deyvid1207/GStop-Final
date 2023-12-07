@@ -66,6 +66,11 @@ namespace GStop.Core.Services
          
             await _dbContext.SaveChangesAsync();
         }
+        public async Task AddGame(Game model)
+        {
+            model.Count++;
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task DeleteGameAsync(int id)
         {
             var game = await FindGameAsync(id);
@@ -177,11 +182,9 @@ namespace GStop.Core.Services
             {
                 user.Money -= game.Price;
                 game.Count--;
-                if (game.Count == 0)
+                if (game.Count < 0)
                 {
-                    comments = game.Comments.ToList();
-                    _dbContext.Games.Remove(game);
-                    _dbContext.Comments.RemoveRange(comments);
+                    game.Count = 0;
                 }
                 await _dbContext.SaveChangesAsync();
                 return true;
@@ -217,7 +220,7 @@ namespace GStop.Core.Services
 
         public async Task<GameComments> GetComments(Game game, int curpage)
         {
-            var comments = await _dbContext.Comments.ToListAsync();
+            var comments = game.Comments.ToList();
             var gameCommentsDto = new GameComments
             {
 
@@ -256,9 +259,11 @@ namespace GStop.Core.Services
         public async Task<GameComments> GetAllComments(Game game)
         {
 
-            var comments = await _dbContext.Comments.ToListAsync();
+            var comments =  game.Comments.ToList();
+            if(comments.Count > 0) { 
             return new GameComments()
             {
+
                 comments = comments.Select(x => new UserCommentDTO()
                 {
                     Id = x.Id,
@@ -266,6 +271,11 @@ namespace GStop.Core.Services
                     Username = x.Publisher.UserName,
                     PublishedOn = x.PublishedOn,
                 }).ToList(),
+            };
+            }
+            return new GameComments()
+            {
+                
             };
         }
     }

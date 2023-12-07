@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API_URL from "../API_URL";
-import { useAuth } from "../AuthenticationCheck";
+import API_URL from "../../utils/API_URL";
+import { useAuth } from "../../utils/AuthenticationCheck";
  
  
 function AddGame() {

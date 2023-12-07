@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../UserContext';
-import API_URL from "../API_URL";
+import { useUser } from '../../utils/UserContext';
+import API_URL from "../../utils/API_URL";
 import * as jwt from 'jwt-decode';
-import './styles/Login.css'
-import  './styles/responsive/ResponsiveLogin.css'
+import '../styles/Login.css'
+import  '../styles/responsive/ResponsiveLogin.css'
 
 function Login() {
   const navigate = useNavigate();
