@@ -1,40 +1,5 @@
- <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-    }
 
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    h2 {
-      color: #007BFF;
-    }
-
-    h3 {
-      color: #6C757D;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-
-    p {
-      margin-bottom: 10px;
-    }
-
-    strong {
-      color: #DC3545;
-    }
-  </style>
-<h1 style= "text-allign:center">
+<h1>
 GStop </h1>
 <h2>Overview</h2>
 <h3> 
