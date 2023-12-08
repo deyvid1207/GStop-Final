@@ -13,11 +13,13 @@ Welcome to GStop, your one-stop destination for all your online gaming needs! GS
 </ul>
 <h2>How to run</h2>
 <h3>1. Open your cloned folder in your VS code</h3>
-<h3>2. In the client/GStop/package.json you should change the route of the "start:api" with the equivalent route to the api </h3>
-<h3>3. Run the commands:
+<h3>3. In the client/GStop/package.json you should change the route of the "start:api" with the equivalent route to the api </h3>
+<h3>4. Run the commands:
 </br> -cd GStop-Final/client/GStop </br>
 -npm i</h3>
+<h3>5. In the utils/API_URL change the const API_URL with your localhost </h3>
 <h3>The project is set to run concurrently with the -npm start command</h3>
+ 
 
 <h2>Users</h2>
 <h3>Guest</h3>
