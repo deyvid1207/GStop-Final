@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../utils/UserContext';
+ 
 import API_URL from "../../utils/API_URL";
 import * as jwt from 'jwt-decode';
 import '../styles/Login.css'
@@ -52,10 +52,10 @@ function Login() {
       console.log("Login successful");
        
 
-      // Save the token to localStorage
+    
       localStorage.setItem('token', data.token);
       
-      // Decode the token
+ 
       const decoded = jwt.jwtDecode(localStorage.getItem('token'))
       const currentuser = await fetch(`${API_URL}/api/accounts/get-user?username=${decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']}`, {
         method: 'GET',
@@ -65,20 +65,14 @@ function Login() {
         },
       }).then(r => r.json())
    
-      console.log(currentuser);
+  
  
     
       localStorage.setItem('currentUser', JSON.stringify(currentuser.user));
       localStorage.setItem('UserRole', JSON.stringify(currentuser.Role));
-      console.log(currentuser);
-     
-      // The decoded object will contain the claims in the JWT token
-      console.log(decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']);
 
-      // You can access specific claims like this:
- 
 
-      // Redirect to the desired page
+
       navigate("/");
       window.location.reload(false);
     } else {

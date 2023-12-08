@@ -19,7 +19,6 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
  
-  console.log(API_URL)
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -54,10 +53,10 @@ function Register() {
         }), 
       });
   
-      console.log("After fetch");
+
   
       if (response.status !== 200) {
-        console.log(response.status);
+  
         if(password !== confirmPassword) {
           alert("Passwords must match!")
         }

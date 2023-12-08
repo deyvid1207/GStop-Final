@@ -13,6 +13,27 @@
     padding-bottom: 3em;
     background-color: #ddd;
   }
+  .button-row {
+    padding-bottom: 15px;
+  }
+  .Page-but {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 1.2em;
+    padding: 1em;
+    gap: 1em
+  }
+  .Page-but-1 {
+    padding: 1em 2em 1em 2em;
+  
+    
+  }
+  .Page-but-1:hover {
+    cursor: pointer;
+  
+    
+  }
   .card-disabled {
     width: 18rem;
     height: 350px; /* Adjust the height based on your design preference */
@@ -80,7 +101,8 @@
     background-color: #4caf50;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 16px ;
+    
     text-align: center;
     text-decoration: none;
     display: inline-block;

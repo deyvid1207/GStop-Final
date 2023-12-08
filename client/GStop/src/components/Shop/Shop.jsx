@@ -39,9 +39,9 @@ function Shop() {
     
       if  (search === '' ) { 
       try {
-        // Replace the URL with the actual endpoint for your games
+     
         let response;
-        // Replace the URL with the actual endpoint for your games
+     
         if (sortCriteria === 'Likes') {
           response = await fetch(`${API_URL}/api/game/GetAllGamesSortedByLikes`);
         } else {
@@ -66,7 +66,7 @@ function Shop() {
       try {
 
         console.log(search)
-        // Replace the URL with the actual endpoint for your games
+     
         const response = await fetch(`${API_URL}/api/game/searchGame?input=${search}`, {
 
           method: 'GET',
@@ -149,6 +149,8 @@ function Shop() {
             <img className="image" src="https://assets.materialup.com/uploads/b17ea0c7-df76-4ce1-bf82-4a2cf6ae866d/preview.jpg"/>
             <h2 className="ng-Title">No games found</h2>
             </div></>
+
+      
         )
       
       

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import API_URL from "../../utils/API_URL";
 import '../styles/Details.css'
 import '../styles/responsive/ResponsiveDetails.css'
-import { json, useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/AuthenticationCheck";
+import {  useNavigate } from "react-router-dom";
+
  import Comment from "./Comment";
 function Details() {
   const [game, setGame] = useState();
@@ -24,7 +24,7 @@ function Details() {
     async function fetchGame() {
 
        setUser(JSON.parse(localStorage.getItem('currentUser')))
-       console.log(user)
+    
       try {
         const response = await fetch(
           `${API_URL}/api/game/GetGame/${localStorage.getItem("game-id")}`,
@@ -64,16 +64,16 @@ function Details() {
         const data = await response.json();
         if(commentsall.ok && commentsrs.ok) { 
         const commentData = await commentsrs.json();
-        console.log(commentData)
+   
         const AllcommentData = await commentsall.json();
         setAllComments(AllcommentData);
      
         setcomments(commentData);
       }
       setGame(data);
-      console.log(game)
+   
       setLikes(data.Likes.length);
-        console.log(likes);
+     
       } catch (error) {
         console.error("Error fetching game:", error);
       }
@@ -84,7 +84,7 @@ function Details() {
 
   
    async function BuyGame() {
-    console.log(user);
+  
     const response = await fetch(`${API_URL}/api/game/PurchaseGame/${game.Id}`, {
       method: 'POST',
       headers: {
@@ -95,8 +95,7 @@ function Details() {
     });
     
     if(response.ok) {
-      console.log(user.Money);
-      console.log('bought!');
+ 
     const newMoney = user.Money - game.Price;
     setMoney(newMoney);
 
@@ -112,7 +111,7 @@ function Details() {
   } }
   
   const handleDeleteComment = async (commentId) => {
-    // Update comments based on your logic
+    // Update comment
     const updatedComments = commentsperPage.comments.filter((comment) => comment.Id !== commentId);
     setcomments({ ...commentsperPage, comments: updatedComments });
   };
@@ -126,7 +125,7 @@ function Details() {
       body: JSON.stringify(user.UserName),
     });
   
-    // Update likes based on the previous state
+    // Update likes 
     const updatedGameResponse = await fetch(
       `${API_URL}/api/game/GetGame/${localStorage.getItem("game-id")}`,
       {
@@ -139,7 +138,7 @@ function Details() {
     );
   
     if (response.ok && updatedGameResponse.ok) {
-      // Update likes based on the latest value of game.Likes.length
+   
       const updatedGameData = await updatedGameResponse.json();
       setLikes(updatedGameData.Likes.length);
     }
@@ -166,9 +165,11 @@ function Details() {
       }
   
       const responseData = await response.json();
-      console.log(responseData);
+   
+      
+
       window.location.reload();
-      // Optionally, you can update the comments state with the new comment
+
       setcomments((prevComments) => [...prevComments, responseData]);
   
     } catch (error) {
@@ -179,7 +180,7 @@ function Details() {
   
 
   if (!game) {
-    // Render a loading state or return null if game is not available yet
+ 
     return null;
   }
 
@@ -242,7 +243,8 @@ function Details() {
                  <div className="Pages">
                  <p>Page: {currentPage} out of {commentsperPage.Pages === 0 ? (<>1</>) : (<>{commentsperPage.Pages}</>)}</p>
                  <p>Total Comments: {allcomments.comments.length}</p>
-                  <button onClick={() => {
+                 <div className="Page-but"> 
+                  <button className="Page-but-1" onClick={() => {
                     var newPage = currentPage - 1;
                     if(newPage <= 0) {
                       newPage = 1;
@@ -252,12 +254,12 @@ function Details() {
                      
                   }} > &#8592;</button>
                 
-                  <button  onClick={() => {
+                  <button className="Page-but-1" onClick={() => {
                     var newPage = currentPage + 1;
-                    console.log(newPage)
                  
+                    
                     if(newPage > commentsperPage.Pages) {
-                      console.log("here")
+                    
                       newPage = commentsperPage.Pages ;
                     
                       if(commentsperPage.Pages === 0) {
@@ -269,6 +271,7 @@ function Details() {
                     setCurrent(newPage)
                       
                   }} > &#8594;</button>
+                  </div>  
                  </div>
                
           </div>

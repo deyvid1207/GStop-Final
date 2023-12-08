@@ -44,8 +44,7 @@ function AddGame() {
               price: Price,
             }), 
           });
-          console.log(response.json());
-          console.log(response.status);
+       
         }
         catch (error) {
           console.log(error)

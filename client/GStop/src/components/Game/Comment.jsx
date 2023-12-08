@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+
 import API_URL from "../../utils/API_URL";
 
  
 
-function Comment(com, gameId) {
+function Comment(com) {
 
    
    

@@ -30,7 +30,7 @@ import '../styles/AddGame.css'
         setPrice(e.target.value);
       };
     
-console.log(location)
+
  async function editGame(e) {
     e.preventDefault();
     const editgame = await fetch(`${API_URL}/api/game/EditGame/${location.state.Id}`, {

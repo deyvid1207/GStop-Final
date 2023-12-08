@@ -6,7 +6,6 @@ import Logout from '../../utils/Logout';
 import API_URL from '../../utils/API_URL';
 import '../styles/Heading.css';
 import '../styles/responsive/ResponsiveHeading.css';
-// Define the addMoney function
 async function addMoney(storedUser, setMoney) {
  
   if (!storedUser) {
@@ -31,10 +30,9 @@ async function addMoney(storedUser, setMoney) {
       },
     }).then(r => r.json())
     if (!response.ok) {
-      // Handle error
       console.error('Failed to add money:', response.statusText);
     } else {
-      // Handle success
+  
       console.log('Money added successfully');
       localStorage.setItem('currentUser', JSON.stringify(currentuser.user));
       console.log(currentuser.user)
@@ -42,7 +40,7 @@ async function addMoney(storedUser, setMoney) {
       
     }
   } catch (error) {
-    // Handle network error or other issues
+  s
     console.error('Error:', error.message);
   }
 }
@@ -52,8 +50,7 @@ function Heading() {
 
   const [money, setMoney] = useState(storedUser ? storedUser.Money : 0);
 
-  // Save user data to localStorage when the user changes
-  // Check if user data is in localStorage when the component mounts
+ 
   useEffect(() => {
     localStorage.setItem('currentUser', JSON.stringify(storedUser));
   }, [storedUser]);
@@ -70,7 +67,7 @@ function Heading() {
               <>
                 <h3 className="Title-If"><NavLink to="/">GStop</NavLink></h3>
                 <li className="right"   onClick={() => addMoney(storedUser, setMoney)}>{money.toFixed(2)}$</li>
-                <li><NavLink to="/dashboard">Welcome {storedUser.UserName}</NavLink></li>
+                <li>Welcome {storedUser.UserName}</li>
                 <li className="last"><button className='logout' onClick={Logout}><NavLink to="/">Logout </NavLink></button></li>
               </>
             ) : (
